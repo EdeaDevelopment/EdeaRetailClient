@@ -1,0 +1,23 @@
+{
+  "name": "shopnow",
+  "version": "1.0.0",
+  "description": "Shop now",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdeaDevelopment/EdeaRetailClient.git"
+  },
+  "keywords": [
+    "Shop",
+    "Now"
+  ],
+  "author": "Dvir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdeaDevelopment/EdeaRetailClient/issues"
+  },
+  "homepage": "https://github.com/EdeaDevelopment/EdeaRetailClient#readme"
+}
