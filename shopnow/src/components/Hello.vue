@@ -21,17 +21,18 @@
 </template>
 
 <script>
+var handler = require('../common/headers/js/header_cart.js')
+console.log(handler)
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: handler.huha()
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="../common/css/demo.css" scoped>
-
+<style src="../common/headers/css/header_cart.css" scoped>
 </style>

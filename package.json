@@ -4,7 +4,7 @@
   "description": "Shop now",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test"    
   },
   "repository": {
     "type": "git",
