@@ -5,22 +5,24 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
-import Messages from './common/localization/js/i18n.js'
+import Translations from './common/localization/js/i18n.js'
+import Hello from '@/components/Hello'
 
 Vue.config.productionTip = false
+Vue.use(VueI18n)
+
+// setup locale info for root Vue instance
+const i18n = new VueI18n({
+  locale: 'ja',
+  messages: Translations.messages
+})
 
 /* eslint-disable no-new */
-new Vue({
+const app = new Vue({
   el: '#app',
   router,
+  i18n: i18n,
   template: '<App/>',
   components: { App }
 })
 
-Vue.use(VueI18n)
-
-// Create VueI18n instance with options
-const i18n = new VueI18n({
-  locale: 'ja', // set locale
-  messages: Messages.messages // set locale messages
-})
