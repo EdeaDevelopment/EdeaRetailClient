@@ -7,13 +7,13 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import Translations from './common/localization/js/i18n.js'
 import Hello from '@/components/Hello'
+import { store } from './store/store'
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)
-
 // setup locale info for root Vue instance
 const i18n = new VueI18n({
-  locale: 'ja',
+  locale: 'en',
   messages: Translations.messages
 })
 
@@ -21,6 +21,7 @@ const i18n = new VueI18n({
 const app = new Vue({
   el: '#app',
   router,
+  store,
   i18n: i18n,
   template: '<App/>',
   components: { App }

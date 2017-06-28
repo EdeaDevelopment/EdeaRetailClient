@@ -7,7 +7,6 @@
 
 <script>
 /* eslint-disable no-unused-vars */
-import Translations from './common/localization/js/i18n.js'
 export default {
   name: 'app'
 }
