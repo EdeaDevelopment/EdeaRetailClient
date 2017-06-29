@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 // We can replace the {commit} with the context object
 export default {
-    register ({ commit }, userId) {
+    register1 ({ commit }, userId) {
         setTimeout(() => {
-            commit('register', userId)
+            commit('register1', userId)
         }, 1000)
     }
 }

@@ -6,7 +6,6 @@ import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
 import Translations from './common/localization/js/i18n.js'
-import Hello from '@/components/Hello'
 import { store } from './store/store'
 
 Vue.config.productionTip = false

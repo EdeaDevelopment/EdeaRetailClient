@@ -1,14 +1,14 @@
 /* eslint-disable indent */
 export default {
-  unregisteredUsers (state) {
+  unregisteredUsers1 (state) {
       return state.users.filter(user => {
          return !user.registered
         })
     },
-    registrations (state) {
-        return state.registrations
+    registrations1 (state) {
+        return state.registrations1
     },
-    totalRegistrations (state) {
-        return state.registrations.length
+    totalRegistrations1 (state) {
+        return state.registrations1.length
     }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 export default {
-    register1 (state, userId) {
+    register (state, userId) {
         const date = new Date()
         const user = state.users.find(user => {
             return user.id === userId
@@ -12,6 +12,9 @@ export default {
             date: date.getMonth() + '/' + date.getDay()
         }
         console.log(registration)
-        state.registrations1.push(registration)
+        state.registrations.push(registration)
+    },
+    getTest (state, data) {
+        state.testdata.push(data)
     }
 }
