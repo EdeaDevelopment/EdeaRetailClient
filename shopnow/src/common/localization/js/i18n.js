@@ -3,7 +3,7 @@
  // Ready translated locale messages
 const messages = {
  ja: { message: { hello: 'こんにちは、世界' } },
- en: { message: { hello: 'hello componen44ft12' } }
+ en: { message: { hello: 'hello componen44ft124' } }
 }
 
 module.exports = {
