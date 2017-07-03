@@ -27,11 +27,9 @@ export default {
   white-space: nowrap;
 
 #headercart 
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
+  margin: -10px;
   height: 50px;
-  width: 100%;
   background: #31353d;
   text-align: center;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
