@@ -7,6 +7,7 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import Translations from './common/localization/js/i18n.js'
 import { store } from './store/store'
+import 'es6-promise/auto'
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)

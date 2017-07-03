@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -10,6 +11,10 @@
             "jsx": true
         },
         "sourceType": "module"
+    },
+    "globals":{
+        "$": true,
+        "jQuery": true
     },
     "rules": {
         "indent": [

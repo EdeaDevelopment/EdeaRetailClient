@@ -4,14 +4,20 @@
      <div id="logo"><img src="../../assets/images/cart/cd-logo.svg" alt="Homepage"></div>
 
 		<div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
-		<div id="cd-cart-trigger"><a class="cd-img-replace" href="#0">Cart</a></div>
-  </div>
+		<router-link to="/ShoppingCart">
+      <div id="cd-cart-trigger"><a class="cd-img-replace" href="#0" v-on:click="cartTrigger"></a></div>
+    </router-link>
+    </div>
 </template>
 
 <script>
 export default {
   name: 'header',
+  ready () {
+  },
   methods: {
+    cartTrigger (event) {
+    }
   }
 }
 
@@ -39,8 +45,6 @@ export default {
   #headercart 
     height: 80px;
   
-
-
 #logo 
   padding-top: 5px;
   -webkit-transform: scale(0.8);
@@ -54,7 +58,7 @@ export default {
     padding-top: 20px;
     position: absolute;
     /* logo left margin on Dekstop */
-    left: 2.4em;
+    right: 2.4em;
     top: 0;
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -62,8 +66,6 @@ export default {
     -o-transform: scale(1);
     transform: scale(1);
   
-
-
 #cd-hamburger-menu, #cd-cart-trigger 
   position: absolute;
   top: 0;
@@ -73,21 +75,8 @@ export default {
   width: 60px;
   height: 100%;
 
-
-#cd-hamburger-menu 
-  left: 0;
-
-#cd-hamburger-menu a 
-  background: #26292f url("../../assets/images/cart/cd-hamburger-menu.svg") no-repeat center center;
-
-@media only screen and (min-width: 1200px) 
-  #cd-hamburger-menu 
-    display: none;
-  
-
-
 #cd-cart-trigger 
-  right: 0;
+  left: 0;
 
 #cd-cart-trigger a 
   background: #26292f url("../../assets/images/cart/cd-cart.svg") no-repeat center center;
@@ -95,201 +84,11 @@ export default {
 @media only screen and (min-width: 1200px) 
   #cd-cart-trigger 
     /* cart right margin on desktop */
-    right: 0;
+    left: 0;
   
   #cd-cart-trigger a 
     position: relative;
     width: 100px;
     border-left: none;
     background-color: #26292f;
-  
-
-
-#main-nav, #cd-cart 
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 260px;
-  /* header height */
-  padding-top: 50px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  z-index: 3;
-
-@media only screen and (min-width: 768px) 
-  #main-nav, #cd-cart 
-    width: 350px;
-  
-
-@media only screen and (min-width: 1200px) 
-  #main-nav, #cd-cart 
-    width: 30%;
-    /* header height has changed */
-    padding-top: 80px;
-  
-
-
-#main-nav 
-  left: -100%;
-  background: #FFF;
-  -webkit-transition: left 0.3s;
-  -moz-transition: left 0.3s;
-  transition: left 0.3s;
-
-#main-nav.speed-in 
-  left: 0;
-
-#main-nav ul a 
-  display: block;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 1em;
-  border-bottom: 1px solid #e0e6ef;
-
-#main-nav ul .current 
-  box-shadow: inset 3px 0 #435779;
-
-@media only screen and (min-width: 1200px) 
-  #main-nav 
-    /* reset main nav style */
-    position: absolute;
-    height: auto;
-    width: auto;
-    left: auto;
-    right: 8em;
-    padding-top: 0;
-    top: 0;
-    background: transparent;
-    box-shadow: none;
-    /* header height */
-    line-height: 80px;
-    z-index: 4;
-  
-  #main-nav li 
-    display: inline-block;
-    margin-left: 1em;
-  
-  #main-nav ul a 
-    display: inline-block;
-    height: auto;
-    line-height: 1;
-    padding: 1em 1.4em;
-    border-bottom: none;
-    color: rgba(255, 255, 255, 0.8);
-    border-radius: 0.25em;
-  
-  #main-nav ul a.current 
-    box-shadow: none;
-    background: #435779;
-    color: #FFF;
-  
-  .no-touch #main-nav ul a:hover 
-    background: #435779;
-    color: #FFF;
-  
-
-.no-js #main-nav 
-  position: fixed;
-
-
-#cd-cart 
-  right: -100%;
-  background: #FFF;
-  -webkit-transition: right 0.3s;
-  -moz-transition: right 0.3s;
-  transition: right 0.3s;
-
-#cd-cart.speed-in 
-  right: 0;
-
-#cd-cart > * 
-  padding: 0 1em;
-
-#cd-cart h2 
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 1em 0;
-
-#cd-cart .cd-cart-items 
-  padding: 0;
-
-#cd-cart .cd-cart-items li 
-  position: relative;
-  padding: 1em;
-  border-top: 1px solid #e0e6ef;
-
-#cd-cart .cd-cart-items li:last-child 
-  border-bottom: 1px solid #e0e6ef;
-
-#cd-cart .cd-qty, #cd-cart .cd-price 
-  color: #a5aebc;
-
-#cd-cart .cd-price 
-  margin-top: .4em;
-
-#cd-cart .cd-item-remove 
-  position: absolute;
-  right: 1em;
-  top: 50%;
-  bottom: auto;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: url("../../assets/images/cart/cd-remove-item.svg") no-repeat center center;
-
-.no-touch #cd-cart .cd-item-remove:hover 
-  background-color: #e0e6ef;
-
-#cd-cart .cd-cart-total 
-  padding-top: 1em;
-  padding-bottom: 1em;
-
-#cd-cart .cd-cart-total span 
-  float: right;
-
-#cd-cart .cd-cart-total::after 
-  /* clearfix */
-  content: '';
-  display: table;
-  clear: both;
-
-#cd-cart .checkout-btn 
-  display: block;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  background: #7dcf85;
-  color: #FFF;
-  text-align: center;
-
-.no-touch #cd-cart .checkout-btn:hover 
-  background: #a2dda8;
-
-#cd-cart .cd-go-to-cart 
-  text-align: center;
-  margin: 1em 0;
-
-#cd-cart .cd-go-to-cart a 
-  text-decoration: underline;
-
-@media only screen and (min-width: 1200px) 
-  #cd-cart > * 
-    padding: 0 2em;
-  
-  #cd-cart .cd-cart-items li 
-    padding: 1em 2em;
-  
-  #cd-cart .cd-item-remove 
-    right: 2em;
-  
-
-
 </style>
