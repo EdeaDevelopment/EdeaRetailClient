@@ -6,6 +6,9 @@
         <h4>
           {{ TemporaryTransactionNumber }}
         </h4>
+        <h4>
+          {{ LeftToPay }}
+        </h4>
         <form action="">Add item<br>
         <input ref="ItemCode" type="text">
         </form>
@@ -20,17 +23,26 @@ export default {
   computed: {
     TemporaryTransactionNumber () {
       return this.$store.getters['ShoppingCartModule/TemporaryTransactionNumber']
+    },
+    LeftToPay () {
+      return this.$store.getters['ShoppingCartModule/LeftToPay']
+    },
+    PrerequisiteTransactionData () {
+      return this.$store.getters['ShoppingCartModule/CurrentPrerequisiteTransactionData']
     }
   },
   methods: {
     OpenTransaction () {
-      this.$store.dispatch('ShoppingCartModule/OpenTransaction')
+      var prerequisiteTransactionData = this.$store.getters['ShoppingCartModule/PrerequisiteTransactionData']
+      if (prerequisiteTransactionData) {
+        this.$store.dispatch('ShoppingCartModule/OpenTransaction')
+      } else {
+        this.$store.dispatch('ShoppingCartModule/GetPrerequisiteTransactionData')
+      }
     },
     UpdateTransaction () {
       var itemCode = this.$refs.ItemCode.value
-      if (itemCode) {
-        this.$store.dispatch('ShoppingCartModule/UpdateTransaction', itemCode)
-      }
+      this.$store.dispatch('ShoppingCartModule/UpdateTransaction', itemCode)
     }
   }
 }
