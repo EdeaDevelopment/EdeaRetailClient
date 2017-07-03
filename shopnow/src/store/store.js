@@ -6,6 +6,7 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 import userModule from './modules/user/store'
+import ShoppingCartModule from './modules/ShoppingCart/store'
 
 Vue.use(Vuex)
 console.log(getters)
@@ -23,6 +24,7 @@ export const store = new Vuex.Store({
     mutations,
     actions,
     modules: {
-      userModule: userModule
+      userModule: userModule,
+      ShoppingCartModule: ShoppingCartModule
     }
 })
