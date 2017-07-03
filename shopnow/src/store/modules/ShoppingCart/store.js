@@ -9,7 +9,8 @@ export default {
   state: {
     TemporaryTransactionNumber: null,
     Transaction: null,
-    ErrorMessage: null
+    ErrorMessage: null,
+    PrerequisiteTransactionData: null
   },
   actions,
   mutations,
