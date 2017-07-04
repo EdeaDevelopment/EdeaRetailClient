@@ -15,7 +15,7 @@
       <button @click="OpenTransaction()">OpenTransaction</button>
       <button @click="UpdateTransaction()">UpdateTransaction</button>
     </div>
-    <listview :transaction="transaction"></listview>
+    <listview :transactionItems="transaction"></listview>
   </div>
 </template>
 

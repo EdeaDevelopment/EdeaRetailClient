@@ -19,22 +19,21 @@
 <script>
   export default {
     name: 'header',
-    mounted () {
+    mounted() {
       var data = {
         employeeIdNumber: '2524',
         posPassword: '12'
       }
       this.$store.dispatch('userModule/getEmployeeDetails', data)
     },
-    data: function () {
+    data: function() {
       return {
         customerSubTotal: 100
       }
     },
     computed: {
-      customerName () {
+      customerName() {
         var data = this.$store.getters['userModule/userDetails']
-        debugger
         if (data) {
           return data.data.EmployeeName
         }
@@ -42,7 +41,7 @@
       }
     },
     methods: {
-      cartTrigger (event) {}
+      cartTrigger(event) {}
     }
   }
 </script>
