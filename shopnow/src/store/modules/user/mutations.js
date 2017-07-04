@@ -16,5 +16,8 @@ export default {
     },
     getTest (state, data) {
         state.testdata.push(data)
+    },
+    getEmployeeDetails (state, response) {
+        state.userDetails = response
     }
 }

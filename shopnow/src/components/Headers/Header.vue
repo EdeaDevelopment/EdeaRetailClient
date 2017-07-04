@@ -1,31 +1,49 @@
 /* eslint-disable indent */
 <<template>
   <div id='headercart'>
-     <!--<div id="logo"><img src="../../assets/images/cart/cd-logo.svg" alt="Homepage"></div>-->
+    <!--<div id="logo"><img src="../../assets/images/cart/cd-logo.svg" alt="Homepage"></div>-->
     <div id="logo"><img class="logoheader" src="http://mobileapi.edea.co.il/mobileresources/RetailChains/castro.png" alt="Homepage"></div>
-
-		<div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
-		<router-link to="/ShoppingCart">
-      <div id="cd-cart-trigger"><a class="cd-img-replace" href="#0" v-on:click="cartTrigger"></a></div>
+    <div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
+    <router-link to="/ShoppingCart">
+      <div id="cd-cart-trigger">
+        <a class="cd-img-replace" href="#0" v-on:click="cartTrigger"></a>
+      </div>
     </router-link>
     <div class="item">
-      <span class="textabove headertext">Aloni Ploni</span><br>
-      <span class="textbelow headertext">Subtotal : 100$</span>
+      <span class="textabove headertext">{{ customerName }}</span><br>
+      <span class="textbelow headertext">{{ $t('message.subTotal') }} : {{ customerSubTotal }}</span>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'header',
-  ready () {
-  },
-  methods: {
-    cartTrigger (event) {
+  export default {
+    name: 'header',
+    mounted () {
+      var data = {
+        employeeIdNumber: '2524',
+        posPassword: '12'
+      }
+      this.$store.dispatch('userModule/getEmployeeDetails', data)
+    },
+    data: function () {
+      return {
+        customerSubTotal: 100
+      }
+    },
+    computed: {
+      customerName () {
+        var data = this.$store.getters['userModule/userDetails']
+        if (data != null && data === undefined) {
+          return data.data.EmployeeName
+        }
+        return 'Aloni Ploni'
+      }
+    },
+    methods: {
+      cartTrigger (event) {}
     }
   }
-}
-
 </script>
 
 <style scouped lang='sass'>

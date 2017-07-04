@@ -9,6 +9,7 @@ export default {
   state: {
     registrations: [],
     testdata: [],
+    userDetails: '',
     users: [
             {id: 1, name: 'Max', registered: false},
             {id: 2, name: 'Dvir', registered: false},

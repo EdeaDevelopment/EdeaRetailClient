@@ -8,7 +8,6 @@
 <script>
 /* eslint-disable no-unused-vars */
 import MyHeader from '@/components/Headers/Header'
-console.log(MyHeader)
 export default {
   name: 'app',
   components: {

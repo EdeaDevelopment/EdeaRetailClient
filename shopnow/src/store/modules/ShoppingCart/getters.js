@@ -12,5 +12,16 @@ export default {
     },
     PrerequisiteTransactionData (state) {
         return state.PrerequisiteTransactionData
+    },
+    Transaction (state) {
+        return state.Transaction
+    },
+    TransactionItems (state) {
+        var transactionItems = []
+        var transactionItemsAlreadyExists = state.Transaction && state.Transaction.TransactionItems && state.Transaction.TransactionItems.length > 0
+        if (transactionItemsAlreadyExists) {
+            transactionItems = state.Transaction.TransactionItems
+        }
+        return transactionItems
     }
 }

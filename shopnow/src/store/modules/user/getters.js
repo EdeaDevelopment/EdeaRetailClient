@@ -13,5 +13,8 @@ export default {
     },
     apidata (state) {
         return state.testdata
+    },
+    userDetails (state) {
+        return state.userDetails
     }
 }

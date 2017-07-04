@@ -1,38 +1,48 @@
 <<template>
   <div id="ShoppingCart">
-      <h3>ShoppingCart</h3>
-      <hr>
-      <div class="row">
-        <h4>
-          {{ TemporaryTransactionNumber }}
-        </h4>
-        <h4>
-          {{ LeftToPay }}
-        </h4>
-        <form action="">Add item<br>
+    <h3>ShoppingCart</h3>
+    <hr>
+    <div class="row">
+      <h4>
+        {{ TemporaryTransactionNumber }}
+      </h4>
+      <h4>
+        {{ LeftToPay }}
+      </h4>
+      <form action="">Add item<br>
         <input ref="ItemCode" type="text">
-        </form>
-        <button @click="OpenTransaction()">OpenTransaction</button>
-        <button @click="UpdateTransaction()">UpdateTransaction</button>
-      </div>
+      </form>
+      <button @click="OpenTransaction()">OpenTransaction</button>
+      <button @click="UpdateTransaction()">UpdateTransaction</button>
+    </div>
+    <listview :transaction="transaction"></listview>
   </div>
 </template>
 
 <script>
+import ListView from '@/components/Collections/ListView'
 export default {
+  name: 'shoppingcart',
+  components: {
+    'listview': ListView
+  },
   computed: {
-    TemporaryTransactionNumber () {
+    TemporaryTransactionNumber() {
       return this.$store.getters['ShoppingCartModule/TemporaryTransactionNumber']
     },
-    LeftToPay () {
+    LeftToPay() {
       return this.$store.getters['ShoppingCartModule/LeftToPay']
     },
-    PrerequisiteTransactionData () {
+    PrerequisiteTransactionData() {
       return this.$store.getters['ShoppingCartModule/CurrentPrerequisiteTransactionData']
+    },
+    transaction() {
+      var temptransaction = this.$store.getters['ShoppingCartModule/TransactionItems']
+      return temptransaction
     }
   },
   methods: {
-    OpenTransaction () {
+    OpenTransaction() {
       var prerequisiteTransactionData = this.$store.getters['ShoppingCartModule/PrerequisiteTransactionData']
       if (prerequisiteTransactionData) {
         this.$store.dispatch('ShoppingCartModule/OpenTransaction')
@@ -40,16 +50,16 @@ export default {
         this.$store.dispatch('ShoppingCartModule/GetPrerequisiteTransactionData')
       }
     },
-    UpdateTransaction () {
+    UpdateTransaction() {
       var itemCode = this.$refs.ItemCode.value
       this.$store.dispatch('ShoppingCartModule/UpdateTransaction', itemCode)
     }
   }
 }
 </script>
-
 <style scoped lang='sass'>
     @import '../common/sass/base.scss'
+    @import '../common/sass/localization/rtl.scss'
     #registration 
         box-shadow: 1px 1px 2px 1px #ccc;
         margin: 20px;
@@ -61,7 +71,7 @@ export default {
     .row h4 
         display: inline-block;
         width: 70%;
-        text-align: left;
+        text-align: $textalign;
         margin: 0 0 10px 0;
         background-color: $edea-main-color
     
@@ -70,10 +80,9 @@ export default {
         border: none;
         box-shadow: 1px 1px 1px black;
         font-size: inherit;
-        text-align: right;
+        text-align: $textalign;
         cursor: pointer;
     
     button:hover 
         background-color: green;
-    
 </style>

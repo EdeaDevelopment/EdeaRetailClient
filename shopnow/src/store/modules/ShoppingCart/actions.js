@@ -27,9 +27,11 @@ export default {
         openTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
 
         facadeservice.post('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/opentransaction', openTransactionRequest, null, function (response) {
+            console.log('tran: ' + response.data)
             commit('OpenTransaction', response.data)
         },
         function (response) {
+            console.log('tran: ' + response.data)
             commit('OpenTransaction', response.data)
         })
     },
