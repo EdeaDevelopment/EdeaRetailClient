@@ -34,7 +34,8 @@
     computed: {
       customerName () {
         var data = this.$store.getters['userModule/userDetails']
-        if (data != null && data === undefined) {
+        debugger
+        if (data) {
           return data.data.EmployeeName
         }
         return 'Aloni Ploni'
