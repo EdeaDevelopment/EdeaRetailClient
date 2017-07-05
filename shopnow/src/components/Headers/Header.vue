@@ -11,39 +11,44 @@
     </router-link>
     <div class="item">
       <span class="textabove headertext">{{ customerName }}</span><br>
-      <span class="textbelow headertext">{{ $t('message.subTotal') }} : {{ customerSubTotal }}</span>
+      <div class="textbelow">        
+        <span class="headertext">{{ $n(leftToPay, 'currency') }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'header',
-    mounted() {
-      var data = {
-        employeeIdNumber: '2524',
-        posPassword: '12'
-      }
-      this.$store.dispatch('userModule/getEmployeeDetails', data)
-    },
-    data: function() {
-      return {
-        customerSubTotal: 100
-      }
-    },
-    computed: {
-      customerName() {
-        var data = this.$store.getters['userModule/userDetails']
-        if (data) {
-          return data.data.EmployeeName
-        }
-        return 'Aloni Ploni'
-      }
-    },
-    methods: {
-      cartTrigger(event) {}
+export default {
+  name: 'header',
+  mounted() {
+    var data = {
+      employeeIdNumber: '2524',
+      posPassword: '12'
     }
+    this.$store.dispatch('userModule/getEmployeeDetails', data)
+  },
+  data: function () {
+    return {
+    }
+  },
+  computed: {
+    customerName() {
+      var data = this.$store.getters['userModule/userDetails']
+      if (data) {
+        return data.data.EmployeeName
+      }
+      return 'Aloni Ploni'
+    },
+    leftToPay() {
+      var temptransaction = this.$store.getters['ShoppingCartModule/LeftToPay']
+      return temptransaction
+    }
+  },
+  methods: {
+    cartTrigger(event) { }
   }
+}
 </script>
 
 <style scouped lang='sass'>
@@ -52,6 +57,9 @@
 .headertext
   color: white
   text-align: center
+
+.currencsym
+  color: white  
 
 div.item 
     display: inline-block
@@ -72,6 +80,8 @@ div.item
 .textbelow
   top: 50%
   left: 40%
+  display: initial;
+  width: 150px
 
 .cd-img-replace 
   /* replace text with a background-image */

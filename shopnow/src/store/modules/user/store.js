@@ -10,11 +10,12 @@ export default {
     registrations: [],
     testdata: [],
     userDetails: '',
+    leftToPay: '',
     users: [
-            {id: 1, name: 'Max', registered: false},
-            {id: 2, name: 'Dvir', registered: false},
-            {id: 3, name: 'Ahron', registered: false},
-            {id: 4, name: 'Shlomi', registered: false}
+      { id: 1, name: 'Max', registered: false },
+      { id: 2, name: 'Dvir', registered: false },
+      { id: 3, name: 'Ahron', registered: false },
+      { id: 4, name: 'Shlomi', registered: false }
     ]
   },
   actions,

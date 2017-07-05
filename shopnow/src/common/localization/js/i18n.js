@@ -13,12 +13,38 @@ const messages = {
     message:
     {
       hello: 'hello componen454ft124',
-      subTotal: 'SubTotal'
+      subTotal: 'SubTotal',
+      currency: 'USD'
+    }
+  },
+  he: {
+    message:
+    {
+      hello: 'שלום',
+      subTotal: 'סכום ביניים',
+      currencySymbol: 'ש"ח'
+    },
+    currency: {
+      style: 'currency', currency: 'IL', currencyDisplay: 'symbol'
+    }
+  }
+}
+
+const numberFormats = {
+  'en-US': {
+    currency: {
+      style: 'currency', currency: 'ILS'
+    }
+  },
+  'ja-JP': {
+    currency: {
+      style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
     }
   }
 }
 
 module.exports = {
-  messages
+  messages,
+  numberFormats
 }
 

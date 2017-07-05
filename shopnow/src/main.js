@@ -22,8 +22,9 @@ Vue.mixin({
 
 // setup locale info for root Vue instance
 const i18n = new VueI18n({
-  locale: 'en',
-  messages: Translations.messages
+  locale: 'he',
+  messages: Translations.messages,
+  numberFormats: Translations.numberFormats
 })
 
 /* eslint-disable no-new */
