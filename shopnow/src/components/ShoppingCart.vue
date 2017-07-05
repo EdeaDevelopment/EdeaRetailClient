@@ -12,8 +12,9 @@
       <form action="">Add item<br>
         <input ref="ItemCode" type="text">
       </form>
-      <button @click="OpenTransaction()">OpenTransaction</button>
-      <button @click="UpdateTransaction()">UpdateTransaction</button>
+      <button @click="OpenTransaction()">Open Transaction</button>
+      <button @click="TransactionAddItem()">Transaction Add Item</button>
+      <button @click="TransactionRemoveItem()">Transaction Remove Item</button>
     </div>
     <listview :transactionItems="transaction"></listview>
   </div>
@@ -44,16 +45,14 @@ export default {
   methods: {
     OpenTransaction() {
       this.$store.dispatch('ShoppingCartModule/OpenTransaction')
-      // var prerequisiteTransactionData = this.$store.getters['ShoppingCartModule/PrerequisiteTransactionData']
-      // if (prerequisiteTransactionData) {
-      //   this.$store.dispatch('ShoppingCartModule/OpenTransaction')
-      // } else {
-      //   this.$store.dis1patch('ShoppingCartModule/GetPrerequisiteTransactionData')
-      // }
     },
-    UpdateTransaction() {
+    TransactionAddItem() {
       var itemCode = this.$refs.ItemCode.value
-      this.$store.dispatch('ShoppingCartModule/UpdateTransaction', itemCode)
+      this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
+    },
+    TransactionRemoveItem() {
+      var itemIndex = 0
+      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem 0', itemIndex)
     }
   }
 }
