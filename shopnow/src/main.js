@@ -11,6 +11,15 @@ import 'es6-promise/auto'
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)
+
+Vue.mixin({
+  methods: {
+    log(msg) {
+      console.log(msg)
+    }
+  }
+})
+
 // setup locale info for root Vue instance
 const i18n = new VueI18n({
   locale: 'en',

@@ -15,11 +15,11 @@
             </ul>
             <ul v-if="layout === 'list'" class="list">
                 <!-- A "list" view with small photos and blog titles -->
-                <li v-for="item in transactionItems">
+                <li v-for="(item, index) in transactionItems">
                     <a target="_blank">
                         <img v-bind:src="item.image.small">
                         <p>{{item.ItemDescription}}</p>
-                        <button class="btnremove" @click="removeItem(item)">X</button>
+                        <button class="btnremove" @click="removeItem(index)">X</button>
                     </a>
                 </li>
             </ul>
@@ -30,7 +30,7 @@
 <script>
 export default {
   name: 'listview',
-  props: ['transactionItems'],
+  props: ['transactionItems', 'removeitem'],
   data: function () {
     return {
             // The layout mode, possible values are "grid" or "list".
@@ -38,9 +38,8 @@ export default {
     }
   },
   methods: {
-    removeItem(item) {
-      var index = this.transactionItems.indexOf(item)
-      this.transactionItems.splice(index, 1)
+    removeItem(index) {
+      this.$parent.removeItem(index)
     }
   }
 }

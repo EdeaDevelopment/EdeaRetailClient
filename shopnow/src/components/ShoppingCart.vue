@@ -14,7 +14,7 @@
       </form>
       <button @click="OpenTransaction()">Open Transaction</button>
       <button @click="TransactionAddItem()">Transaction Add Item</button>
-      <button @click="TransactionRemoveItem()">Transaction Remove Item</button>
+      <button @click="TransactionRemoveItem()">Transaction Remove Item 0</button>
     </div>
     <listview :transactionItems="transaction"></listview>
   </div>
@@ -52,7 +52,11 @@ export default {
     },
     TransactionRemoveItem() {
       var itemIndex = 0
-      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem 0', itemIndex)
+      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)
+    },
+    removeItem(index) {
+      this.log('remove item from mixin')
+      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
     }
   }
 }
