@@ -11,17 +11,24 @@ import TransactionItem from '../../../models/Transactions/TransactionItem'
 import GetPrerequisiteTransactionDataRequest from '../../../models/Transactions/GetPrerequisiteTransactionDataRequest'
 
 export default {
-    GetPrerequisiteTransactionData ({ commit, state, rootState }) {
+    async GetPrerequisiteTransactionData({ commit, state, rootState }) {
         var getPrerequisiteTransactionDataRequest = new GetPrerequisiteTransactionDataRequest()
 
-        facadeservice.post('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/GetPrerequisiteTransactionData', getPrerequisiteTransactionDataRequest, null, function (response) {
+        await facadeservice.post('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/GetPrerequisiteTransactionData', getPrerequisiteTransactionDataRequest, null, function (response) {
             commit('GetPrerequisiteTransactionData', response.data)
         },
-        function (response) {
-            commit('GetPrerequisiteTransactionData', response.data)
-        })
+            function (response) {
+                commit('GetPrerequisiteTransactionData', response.data)
+            })
     },
-    OpenTransaction ({ commit, state, rootState }) {
+    async OpenTransaction({ commit, dispatch, state, rootState }) {
+        if (!state.PrerequisiteTransactionData) {
+            await dispatch('GetPrerequisiteTransactionData')
+        }
+
+        if (!state.PrerequisiteTransactionData) {
+            return
+        }
         var openTransactionRequest = new OpenTransactionRequest()
 
         openTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
@@ -30,21 +37,18 @@ export default {
             console.log('tran: ' + response.data)
             commit('OpenTransaction', response.data)
         },
-        function (response) {
-            console.log('tran: ' + response.data)
-            commit('OpenTransaction', response.data)
-        })
+            function (response) {
+                console.log('tran: ' + response.data)
+                commit('OpenTransaction', response.data)
+            })
     },
-    UpdateTransaction ({ commit, state, rootState }, itemCode) {
+    UpdateTransaction({ commit, state, rootState }, itemCode) {
         if (itemCode && state.TemporaryTransactionNumber) {
             var updateTransactionRequest = new UpdateTransactionRequest()
 
             updateTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
-
             updateTransactionRequest.TransactionProcessingSettings.RegisterByGeneralPosCustomer = true
-
             updateTransactionRequest.temporaryTransactionNumber = state.TemporaryTransactionNumber
-
             updateTransactionRequest.Transaction.TemporaryTransactionNumber = state.TemporaryTransactionNumber
 
             var transactionItem = new TransactionItem()
@@ -63,9 +67,9 @@ export default {
             facadeservice.post('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/updatetransaction', updateTransactionRequest, null, function (response) {
                 commit('UpdateTransaction', response.data)
             },
-            function (response) {
-                commit('UpdateTransaction', response.data)
-            })
+                function (response) {
+                    commit('UpdateTransaction', response.data)
+                })
         }
     }
 }

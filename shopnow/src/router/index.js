@@ -18,6 +18,11 @@ export default new Router({
       path: '/ShoppingCart',
       name: 'ShoppingCart',
       component: ShoppingCart
+    },
+    {
+      path: '/',
+      name: 'Registrations',
+      component: Registrations
     }
   ]
 })

@@ -43,12 +43,13 @@ export default {
   },
   methods: {
     OpenTransaction() {
-      var prerequisiteTransactionData = this.$store.getters['ShoppingCartModule/PrerequisiteTransactionData']
-      if (prerequisiteTransactionData) {
-        this.$store.dispatch('ShoppingCartModule/OpenTransaction')
-      } else {
-        this.$store.dispatch('ShoppingCartModule/GetPrerequisiteTransactionData')
-      }
+      this.$store.dispatch('ShoppingCartModule/OpenTransaction')
+      // var prerequisiteTransactionData = this.$store.getters['ShoppingCartModule/PrerequisiteTransactionData']
+      // if (prerequisiteTransactionData) {
+      //   this.$store.dispatch('ShoppingCartModule/OpenTransaction')
+      // } else {
+      //   this.$store.dis1patch('ShoppingCartModule/GetPrerequisiteTransactionData')
+      // }
     },
     UpdateTransaction() {
       var itemCode = this.$refs.ItemCode.value

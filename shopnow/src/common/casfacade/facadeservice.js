@@ -12,7 +12,7 @@ export default {
   get (url, config, successCallback, errorCallback) {
     HTTP.get(url).then(successCallback).catch(errorCallback)
   },
-  post (url, data, config, successCallback, errorCallback) {
-    axios.post(url, data).then(successCallback).catch(errorCallback)
+  async post (url, data, config, successCallback, errorCallback) {
+    await axios.post(url, data).then(successCallback).catch(errorCallback)
   }
 }
