@@ -61,7 +61,7 @@ export default {
       'TransactionAddItem',
       'TransactionRemoveItem',
       'removeItem'
-    ])
+    ]),
     // TransactionAddItem() {
     //   var itemCode = this.$refs.ItemCode.value
     //   this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
@@ -70,10 +70,10 @@ export default {
     //   var itemIndex = 0
     //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)
     // },
-    // removeItem(index) {
-    //   this.log('remove item from mixin')
-    //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
-    // }
+    removeItem(index) {
+      this.log('remove item from mixin')
+      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
+    }
   }
 }
 </script>

@@ -9,9 +9,9 @@
         <a class="cd-img-replace" href="#0" v-on:click="cartTrigger"></a>
       </div>
     </router-link>
-    <div class="customcart">
-
-    </div>
+    <!--<div class="customcart">
+      <i class="fa fa-shopping-cart" @click="showCart = !showCart"></i>
+    </div>-->
     <div class="item">
       <span class="textabove headertext">{{ customerName }}</span><br>
       <div class="textbelow">        
