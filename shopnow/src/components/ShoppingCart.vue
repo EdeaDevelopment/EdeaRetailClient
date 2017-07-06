@@ -10,10 +10,11 @@
         {{ LeftToPay }}
       </h4>
       <form action="">Add item<br>
-        <input ref="ItemCode" value="152301" type="text">
+      <input type="text" v-model="itemCode"  value="a">
+        <!--<input ref="ItemCode" v-model="itemCode" value="152301" type="text">-->
       </form>
       <button @click="OpenTransaction()">Open Transaction</button>
-      <button @click="TransactionAddItem()">Transaction Add Item</button>
+      <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
       <button @click="TransactionRemoveItem()">Transaction Remove Item 0</button>
     </div>
     <listview :transactionItems="TransactionItems"></listview>
@@ -25,6 +26,11 @@ import ListView from '@/components/Collections/ListView'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'shoppingcart',
+  data() {
+    return {
+      itemCode: ''
+    }
+  },
   components: {
     'listview': ListView
   },
@@ -52,13 +58,14 @@ export default {
   methods: {
     ...mapActions('ShoppingCartModule', [
       'OpenTransaction',
+      'TransactionAddItem',
       'TransactionRemoveItem',
       'removeItem'
-    ]),
-    TransactionAddItem() {
-      var itemCode = this.$refs.ItemCode.value
-      this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
-    }
+    ])
+    // TransactionAddItem() {
+    //   var itemCode = this.$refs.ItemCode.value
+    //   this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
+    // }
     // TransactionRemoveItem() {
     //   var itemIndex = 0
     //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)

@@ -17,6 +17,7 @@ export default {
         return state.Transaction
     },
     TransactionItems (state) {
+        debugger
         var transactionItems = []
         var transactionItemsAlreadyExists = state.Transaction && state.Transaction.TransactionItems && state.Transaction.TransactionItems.length > 0
         if (transactionItemsAlreadyExists) {
