@@ -9,10 +9,13 @@
         <a class="cd-img-replace" href="#0" v-on:click="cartTrigger"></a>
       </div>
     </router-link>
+    <div class="customcart">
+
+    </div>
     <div class="item">
       <span class="textabove headertext">{{ customerName }}</span><br>
       <div class="textbelow">        
-        <span class="headertext">{{ $n(leftToPay, 'currency') }}</span>
+        <span class="headertext"> {{ $n(leftToPay, 'currency') }}</span>
       </div>
     </div>
   </div>
@@ -53,6 +56,14 @@ export default {
 
 <style scouped lang='sass'>
 @import '../../common/sass/base.scss'
+
+
+.customcart 
+  background-color: yellow
+  float: left
+  width: 10%
+  height: 100%
+
 
 .headertext
   color: white
