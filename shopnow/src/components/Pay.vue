@@ -1,25 +1,22 @@
 <<template>
-  <div id="ShoppingCart">
-    <h3>ShoppingCart</h3>
+  <div id="Pay">
+    <h3>Pay</h3>
     <hr>
-    <div class="row">
-      <h4>
-        {{ TemporaryTransactionNumber }}
-      </h4>
-      <!-- <h4>
-        {{ LeftToPay }}
-      </h4> -->
-      <div>
-      <input type="text" v-model="itemCode"  value="a">
-      </div>
-      <!-- <button @click="OpenTransaction()">Open Transaction</button> -->
-      <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
-      <!-- <button @click="TransactionRemoveItem()">Transaction Remove Item 0</button> -->
+    <div>
+      <input type="email" v-model="itemCode"  placeholder="אימייל לשליחת קבלה">
     </div>
-    <listview :transactionItems="TransactionItems"></listview>
-    <router-link to="/Pay">
-      <button>המשך לתשלום</button>
-    </router-link>
+    </br>
+    <div>
+      <router-link to="/Pay">
+        <button type="button">תשלום בכרטיס מתנה</button>
+      </router-link>
+    </div>
+    </br>
+    <div>
+      <router-link to="/Pay">
+        <button type="button">תשלום בכרטיס אשראי</button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -64,14 +61,6 @@ export default {
       'TransactionRemoveItem',
       'removeItem'
     ]),
-    // TransactionAddItem() {
-    //   var itemCode = this.$refs.ItemCode.value
-    //   this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
-    // }
-    // TransactionRemoveItem() {
-    //   var itemIndex = 0
-    //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)
-    // },
     removeItem(index) {
       this.log('remove item from mixin')
       this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
@@ -82,21 +71,6 @@ export default {
 <style scoped lang='sass'>
     @import '../common/sass/base.scss'
     @import '../common/sass/localization/rtl.scss'
-    #registration 
-        box-shadow: 1px 1px 2px 1px #ccc;
-        margin: 20px;
-        padding: 20px;
-        display: inline-block;
-        width: 300px;
-        vertical-align: top;
-    
-    .row h4 
-        display: inline-block;
-        width: 70%;
-        text-align: $textalign;
-        margin: 0 0 10px 0;
-        background-color: $edea-main-color
-    
     button 
         background-color: lightgreen;
         border: none;

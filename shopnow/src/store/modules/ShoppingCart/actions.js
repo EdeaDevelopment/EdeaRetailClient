@@ -25,15 +25,15 @@ export default {
         if (!state.PrerequisiteTransactionData) {
             await dispatch('GetPrerequisiteTransactionData')
         }
-
         if (!state.PrerequisiteTransactionData) {
             return
         }
+
         var openTransactionRequest = new OpenTransactionRequest()
 
         openTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
 
-        HttpClient.post('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/opentransaction', openTransactionRequest, null, function (response) {
+        await HttpClient.postAsync('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/opentransaction', openTransactionRequest, null, function (response) {
             console.log('tran: ' + response.data)
             commit('OpenTransaction', response.data)
         },
@@ -42,7 +42,11 @@ export default {
             commit('OpenTransaction', response.data)
         })
     },
-    TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
+    async TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
+        if (!state.Transaction) {
+            await dispatch('OpenTransaction')
+        }
+
         if (itemCode && state.TemporaryTransactionNumber) {
             var transactionItems = CurrentTransactionItems(state)
             transactionItems.push(FillTransactionItem(state, itemCode))
