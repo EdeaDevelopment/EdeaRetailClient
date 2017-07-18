@@ -1,6 +1,6 @@
 <<template>
   <div id="ShoppingCart">
-    <h3>ShoppingCart</h3>
+    <h3>Shopping Cart</h3>
     <hr>
     <div class="row">
       <h4>
@@ -17,6 +17,18 @@
       <!-- <button @click="TransactionRemoveItem()">Transaction Remove Item 0</button> -->
     </div>
     <listview :transactionItems="TransactionItems"></listview>
+      <div class="columns">
+       <div class="column is-half">
+         <a class="button is-medium is-black footer-button">
+           קופונים
+        </a>
+      </div>
+       <div class="column is-half">
+         <a class="button is-medium is-black footer-button">
+           מימוש נקודות
+           </a>
+      </div>
+    </div>
     <router-link to="/Pay">
       <button>המשך לתשלום</button>
     </router-link>
@@ -82,29 +94,34 @@ export default {
 <style scoped lang='sass'>
     @import '../common/sass/base.scss'
     @import '../common/sass/localization/rtl.scss'
-    #registration 
-        box-shadow: 1px 1px 2px 1px #ccc;
-        margin: 20px;
-        padding: 20px;
-        display: inline-block;
-        width: 300px;
-        vertical-align: top;
+    @import '../../node_modules/bulma/bulma.sass'
+
+    // #registration 
+    //     box-shadow: 1px 1px 2px 1px #ccc;
+    //     margin: 20px;
+    //     padding: 20px;
+    //     display: inline-block;
+    //     width: 300px;
+    //     vertical-align: top;
     
-    .row h4 
-        display: inline-block;
-        width: 70%;
-        text-align: $textalign;
-        margin: 0 0 10px 0;
-        background-color: $edea-main-color
+    // .row h4 
+    //     display: inline-block;
+    //     width: 70%;
+    //     text-align: $textalign;
+    //     margin: 0 0 10px 0;
+    //     background-color: $edea-main-color
     
-    button 
-        background-color: lightgreen;
-        border: none;
-        box-shadow: 1px 1px 1px black;
-        font-size: inherit;
-        text-align: $textalign;
-        cursor: pointer;
+    // button 
+    //     background-color: lightgreen;
+    //     border: none;
+    //     box-shadow: 1px 1px 1px black;
+    //     font-size: inherit;
+    //     text-align: $textalign;
+    //     cursor: pointer;
     
-    button:hover 
-        background-color: green;
+    // button:hover 
+    //     background-color: green;
+
+       .footer-button
+          width: 120px
 </style>

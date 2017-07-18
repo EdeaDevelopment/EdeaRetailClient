@@ -8,9 +8,16 @@ import VueI18n from 'vue-i18n'
 import Translations from './common/localization/js/i18n.js'
 import { store } from './store/store'
 import 'es6-promise/auto'
+// only import the icons you use to reduce bundle size
+import 'vue-awesome/icons/shopping-cart'
+import 'vue-awesome/icons/trash-o'
+import Icon from 'vue-awesome/components/Icon'
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)
+
+// globally (in your main .js file)
+Vue.component('icon', Icon)
 
 Vue.mixin({
   methods: {
