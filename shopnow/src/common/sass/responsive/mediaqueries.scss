@@ -1,0 +1,21 @@
+$phone-width: 500px;
+$tablet-width: 768px;
+$reg-desktop-width: 1024px;
+$mid-desktop-width: 1400px;
+
+$mobilelandscap: "(min-width: 320px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)";
+$mobileportrait: "(min-width: 320px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)";
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}

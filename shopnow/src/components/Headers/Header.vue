@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 <<template>
   <div id='headercart'>
-    <nav class="nav" style="background-color:black; height: 100px">
+    <nav class="nav headersize" style="background-color:black; height: 80px">
     <div class="nav-left">
       <a class="nav-item">
         <router-link to="/ShoppingCart">
@@ -22,7 +22,7 @@
         <span class="spanheader"> {{ $n(leftToPay, 'currency') }}</span>
       </a>
     </div>
-    <div class="nav-right nav-menu">
+    <div class="nav-right">
       <a class="nav-item">
         <a class="button is-large plusbtn">+</a>
       </a>
@@ -89,6 +89,10 @@ export default {
 @import '../../common/sass/base.scss';
 @import '../../../node_modules/bulma/bulma.sass';
 
+  .headersize {
+    height: $headerheight
+  }
+
   .shoppingcarticon {
     color:white !important;
   }
@@ -112,6 +116,19 @@ export default {
     border: 2px solid white;
 
   }
+
+@media ($tablet) {
+  .spanheader {
+    color:white;
+    font-size: small;
+  }
+}
+
+@media ($desktop) {
+  p {
+    font-size: 20px;
+  }
+}
 // .customcart 
 //   background-color: yellow
 //   float: left

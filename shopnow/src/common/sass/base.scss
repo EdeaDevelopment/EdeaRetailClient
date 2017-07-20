@@ -1,1 +1,39 @@
-$edea-main-color: yellow
+$edea-main-color: yellow;
+$headerheight: 70px;
+$footerheight: 100px;
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+
+}
+@mixin transition($transition) {
+  -moz-transition: $transition;
+  -webkit-transition: $transition;
+  -o-transition: $transition;
+  -ms-transition: $transition;
+  transition: $transition;
+}
+@mixin transition-transform($time) {
+    @include transition(-webkit-transform $time);
+    @include transition(-ms-transform $time);
+    @include transition(transform $time);
+}
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin box-shadow($shadow) {
+	-webkit-box-shadow: $shadow;
+	-moz-box-shadow: $shadow;
+	box-shadow: $shadow;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden !important;
+}

@@ -12,8 +12,10 @@ import 'es6-promise/auto'
 import 'vue-awesome/icons/shopping-cart'
 import 'vue-awesome/icons/trash-o'
 import Icon from 'vue-awesome/components/Icon'
+import VueHead from 'vue-head'
 
 Vue.config.productionTip = false
+Vue.use(VueHead)
 Vue.use(VueI18n)
 
 // globally (in your main .js file)

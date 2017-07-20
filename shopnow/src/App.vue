@@ -12,21 +12,24 @@ export default {
   name: 'app',
   components: {
     MyHeader
+  },
+  head: {
+    meta: [
+      { name: 'viewport', content: 'width=device-width,initial-scale=1' }
+    ]
   }
 }
 </script>
 
 <style lang='sass'>
+@import 'common/sass/base.scss';
+
 #app 
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  
 
-html 
-  height: 100%
-  overflow: hidden !important
   
 </style>
