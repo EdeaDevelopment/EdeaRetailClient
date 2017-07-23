@@ -87,7 +87,6 @@ export default {
 
 <style scouped lang='scss'>
 @import '../../common/sass/base.scss';
-@import '../../../node_modules/bulma/bulma.sass';
 
   .headersize {
     height: $headerheight
@@ -117,18 +116,25 @@ export default {
 
   }
 
-@media ($tablet) {
-  .spanheader {
-    color:white;
-    font-size: small;
-  }
-}
+// @media ($tablet) {
+//   .spanheader {
+//     color:white;
+//     font-size: small;
+//   }
+// }
 
-@media ($desktop) {
-  p {
-    font-size: 20px;
-  }
-}
+// @media ($tablet) {
+//   .spanheader {
+//     color:white;
+//     font-size: small;
+//   }
+// }
+
+// @media ($desktop) {
+//   p {
+//     font-size: 20px;
+//   }
+// }
 // .customcart 
 //   background-color: yellow
 //   float: left
