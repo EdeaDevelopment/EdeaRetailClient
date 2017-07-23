@@ -8,7 +8,6 @@ import router from './router'
 import VueI18n from 'vue-i18n'
 import Translations from './common/localization/js/i18n.js'
 import { store } from './store/store'
-import 'es6-promise/auto'
 // only import the icons you use to reduce bundle size
 import 'vue-awesome/icons/shopping-cart'
 import 'vue-awesome/icons/trash-o'
