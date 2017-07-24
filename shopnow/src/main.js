@@ -37,12 +37,33 @@ const i18n = new VueI18n({
 })
 
 /* eslint-disable no-new */
-const app = new Vue({
+/* eslint-disable no-undef */
+window.app = new Vue({
   el: '#app',
   router,
   store,
   i18n: i18n,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  methods: {
+    SearchItem: async function (itemCode) {
+      await store.dispatch('ItemsModule/SearchItems', itemCode)
+      var Items = store.getters['ItemsModule/ItemSearchDetail']
+      var itemsCount = Items.length
+      if (itemsCount > 0 && itemsCount < 2) {
+        var item = Items[0]
+        console.log(JSON.stringify(item))
+        SMPOS.SetItemDetails(JSON.stringify(item))
+      }
+    },
+    TransactionAddItem: function (itemCode) {
+      store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
+      return true
+    },
+    TransactionAddItems: function (items) {
+      store.dispatch('ShoppingCartModule/TransactionAddItems', items)
+      return true
+    }
+  }
 })
 

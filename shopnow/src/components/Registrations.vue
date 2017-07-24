@@ -12,6 +12,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
 export default {
   computed: {
     users () {
@@ -26,10 +27,12 @@ export default {
       return this.$store.getters['userModule/apidata']
     }
   },
+  /* eslint-disable no-undef */
   methods: {
     registerUser (user) {
       console.log(user.id)
-      this.$store.dispatch('userModule/register', user.id)
+      SMPOS.SetBranchName('XXXXXXXX')
+      // this.$store.dispatch('userModule/register', user.id)
     }
   }
 }

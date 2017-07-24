@@ -77,9 +77,11 @@ export default {
       'removeItem'
     ]),
     // TransactionAddItem() {
-    //   var itemCode = this.$refs.ItemCode.value
-    //   this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
-    // }
+    //   console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
+    //   // console.log(itemCode)
+    //   // var itemCode = this.$refs.ItemCode.value
+    //   // this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
+    // },
     // TransactionRemoveItem() {
     //   var itemIndex = 0
     //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)

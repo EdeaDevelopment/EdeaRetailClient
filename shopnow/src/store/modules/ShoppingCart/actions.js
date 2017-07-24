@@ -54,6 +54,24 @@ export default {
             dispatch('UpdateTransaction', transactionItems)
         }
     },
+    async TransactionAddItems({ commit, dispatch, state, rootState }, items) {
+        if (!state.Transaction) {
+            await dispatch('OpenTransaction')
+        }
+
+        if (items && items.length > 0 && state.TemporaryTransactionNumber) {
+            var transactionItems = CurrentTransactionItems(state)
+
+            var newTransactionItems = []
+            items.array.forEach(function(itemCode) {
+                newTransactionItems.push(FillTransactionItem(state, itemCode))
+            }, this)
+
+            transactionItems.push(newTransactionItems)
+
+            dispatch('UpdateTransaction', transactionItems)
+        }
+    },
     TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
         if (itemIndex > -1 && state.TemporaryTransactionNumber) {
             var transactionItems = CurrentTransactionItems(state)
@@ -92,7 +110,7 @@ export const CurrentTransactionItems = (state) => {
     var transactionItems = []
     var transactionItemsAlreadyExists = state.Transaction && state.Transaction.TransactionItems && state.Transaction.TransactionItems.length > 0
     if (transactionItemsAlreadyExists) {
-        transactionItems = state.Transaction.TransactionItems
+        transactionItems = state.Transaction.TransactionItems.slice()
     }
 
     return transactionItems

@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+/* eslint-disable no-undef */
 <<template>
   <div id='headercart'>
     <nav class="nav headersize" style="background-color:black; height: 80px">
@@ -24,7 +25,7 @@
     </div>
     <div class="nav-right">
       <a class="nav-item">
-        <a class="button is-large plusbtn">+</a>
+        <a class="button is-large plusbtn" @click="AddItems()">+</a>
       </a>
     </div>
   </nav>
@@ -49,6 +50,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
 export default {
   name: 'header',
   mounted() {
@@ -80,7 +82,10 @@ export default {
     }
   },
   methods: {
-    cartTrigger(event) { }
+    cartTrigger(event) { },
+    AddItems() {
+      SMPOS.Scan('50')
+    }
   }
 }
 </script>
@@ -117,18 +122,18 @@ export default {
 
   }
 
-@media ($tablet) {
-  .spanheader {
-    color:white;
-    font-size: small;
-  }
-}
+// @media ($tablet) {
+//   .spanheader {
+//     color:white;
+//     font-size: small;
+//   }
+// }
 
-@media ($desktop) {
-  p {
-    font-size: 20px;
-  }
-}
+// @media ($desktop) {
+//   p {
+//     font-size: 20px;
+//   }
+// }
 // .customcart 
 //   background-color: yellow
 //   float: left
