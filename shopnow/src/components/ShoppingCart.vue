@@ -96,7 +96,6 @@ export default {
 <style scoped lang='sass'>
     @import '../common/sass/base.scss'
     @import '../common/sass/localization/rtl.scss'
-    @import '../../node_modules/bulma/bulma.sass'
 
     // #registration 
     //     box-shadow: 1px 1px 2px 1px #ccc;

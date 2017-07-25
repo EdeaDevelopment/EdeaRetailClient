@@ -13,10 +13,13 @@ import 'vue-awesome/icons/shopping-cart'
 import 'vue-awesome/icons/trash-o'
 import Icon from 'vue-awesome/components/Icon'
 import VueHead from 'vue-head'
+import Buefy from 'buefy'
+import 'buefy/lib/buefy.css'
 
 Vue.config.productionTip = false
 Vue.use(VueHead)
 Vue.use(VueI18n)
+Vue.use(Buefy)
 
 // globally (in your main .js file)
 Vue.component('icon', Icon)

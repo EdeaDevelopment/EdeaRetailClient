@@ -129,6 +129,13 @@ export default {
 //   }
 // }
 
+// @media ($tablet) {
+//   .spanheader {
+//     color:white;
+//     font-size: small;
+//   }
+// }
+
 // @media ($desktop) {
 //   p {
 //     font-size: 20px;
