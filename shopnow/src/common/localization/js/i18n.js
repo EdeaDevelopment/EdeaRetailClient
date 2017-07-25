@@ -14,7 +14,8 @@ const messages = {
     {
       hello: 'hello componen454ft124',
       subTotal: 'SubTotal',
-      currency: 'USD'
+      currency: 'USD',
+      coupons: 'coupons'
     }
   },
   he: {
@@ -22,10 +23,11 @@ const messages = {
     {
       hello: 'שלום',
       subTotal: 'סכום ביניים',
-      currencySymbol: 'ש"ח'
-    },
-    currency: {
-      style: 'currency', currency: 'IL', currencyDisplay: 'symbol'
+      currencySymbol: 'ש"ח',
+      coupons: 'קופונים',
+      implementpoint: 'מימוש נקודות',
+      continuetopay: 'המשך לתשלום',
+      removeitemquestion: 'האם אתה בטוח שאתה רוצה להסיר את הפריט'
     }
   }
 }
@@ -33,7 +35,12 @@ const messages = {
 const numberFormats = {
   'en-US': {
     currency: {
-      style: 'currency', currency: 'ILS'
+      style: 'currency', currency: 'ILS', currencyDisplay: 'symbol'
+    }
+  },
+  'he': {
+    currency: {
+      style: 'currency', currency: 'ILS', currencyDisplay: 'symbol'
     }
   },
   'ja-JP': {

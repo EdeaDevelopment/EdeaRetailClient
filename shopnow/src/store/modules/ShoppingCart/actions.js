@@ -43,6 +43,7 @@ export default {
         })
     },
     async TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
+        rootState.loading = true
         if (!state.Transaction) {
             await dispatch('OpenTransaction')
         }
@@ -51,8 +52,9 @@ export default {
             var transactionItems = CurrentTransactionItems(state)
             transactionItems.push(FillTransactionItem(state, itemCode))
 
-            dispatch('UpdateTransaction', transactionItems)
+            await dispatch('UpdateTransaction', transactionItems)
         }
+        rootState.loading = false
     },
     async TransactionAddItems({ commit, dispatch, state, rootState }, items) {
         if (!state.Transaction) {
@@ -72,15 +74,17 @@ export default {
             dispatch('UpdateTransaction', transactionItems)
         }
     },
-    TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
+    async TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
         if (itemIndex > -1 && state.TemporaryTransactionNumber) {
+            rootState.loading = true
             var transactionItems = CurrentTransactionItems(state)
             transactionItems.splice(itemIndex, 1)
 
-            dispatch('UpdateTransaction', transactionItems)
+           await dispatch('UpdateTransaction', transactionItems)
+           rootState.loading = false
         }
     },
-    UpdateTransaction({ commit, state, rootState }, transactionItems) {
+    async UpdateTransaction({ commit, state, rootState }, transactionItems) {
         var updateTransactionRequest = new UpdateTransactionRequest()
         updateTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
         updateTransactionRequest.TransactionProcessingSettings.RegisterByGeneralPosCustomer = true
@@ -88,7 +92,7 @@ export default {
         updateTransactionRequest.Transaction.TemporaryTransactionNumber = state.TemporaryTransactionNumber
         updateTransactionRequest.Transaction.TransactionItems = transactionItems
 
-        HttpClient.post('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/updatetransaction', updateTransactionRequest, null, function (response) {
+        await HttpClient.postAsync('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/updatetransaction', updateTransactionRequest, null, function (response) {
             commit('UpdateTransaction', response.data)
         },
         function (response) {

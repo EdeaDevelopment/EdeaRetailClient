@@ -13,6 +13,7 @@ Vue.use(Vuex)
 console.log(getters)
 export const store = new Vuex.Store({
     state: {
+        loading: false,
         registrations1: [],
         users1: [
             {id: 1, name: 'Max', registered: false},
