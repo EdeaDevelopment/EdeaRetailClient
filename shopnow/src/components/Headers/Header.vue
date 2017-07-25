@@ -87,49 +87,47 @@ export default {
 
 <style scouped lang='scss'>
 @import '../../common/sass/base.scss';
+@import '../../common/sass/responsive/mediaqueries.scss';
 
-  .headersize {
-    height: $headerheight
-  }
+.headersize {
+  height: $headerheight
+}
 
-  .shoppingcarticon {
-    color:white !important;
-  }
+.shoppingcarticon {
+  color: white !important;
+}
 
-  .itemscount{
-    color:white;
-    font-size: x-large;
-  }
+.itemscount {
+  color: white;
+  font-size: x-large;
+}
 
-  .spanheader {
-    color:white;
-    font-size: x-large;
-  }
+.spanheader {
+  color: white;
+  font-size: x-large;
+}
 
-  .spancustomername {
-    display: block !important;
-  }
+.spancustomername {
+  display: block !important;
+}
 
-  .plusbtn {
-    border-radius: 25px;
-    border: 2px solid white;
+.plusbtn {
+  border-radius: 25px;
+  border: 2px solid white;
+}
 
-  }
-
+// @media ('($tablet)') {
+//   .spanheader {
+//     color:white;
+//     font-size: small;
+//   }
+// }
 // @media ($tablet) {
 //   .spanheader {
 //     color:white;
 //     font-size: small;
 //   }
 // }
-
-// @media ($tablet) {
-//   .spanheader {
-//     color:white;
-//     font-size: small;
-//   }
-// }
-
 // @media ($desktop) {
 //   p {
 //     font-size: 20px;
@@ -140,15 +138,11 @@ export default {
 //   float: left
 //   width: 10%
 //   height: 100%
-
-
 // .headertext
 //   color: white
 //   text-align: center
-
 // .currencsym
 //   color: white  
-
 // div.item 
 //     display: inline-block
 //     text-align: center
@@ -157,27 +151,22 @@ export default {
 //     position: relative
 //     line-height: 1.5
 //     top: 20%
-
 // .caption 
 //     display: block
-
 // .textabove 
 //   top: 20%
 //   left: 40%
-
 // .textbelow
 //   top: 50%
 //   left: 40%
 //   display: initial;
 //   width: 150px
-
 // .cd-img-replace 
 //   /* replace text with a background-image */
 //   display: inline-block;
 //   overflow: hidden;
 //   text-indent: 100%;
 //   white-space: nowrap;
-
 // #headercart 
 //   position: relative;
 //   margin: -8px;
@@ -186,15 +175,11 @@ export default {
 //   text-align: center;
 //   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
 //   z-index: 4;
-
 // @media only screen and (min-width: 1200px) 
 //   #headercart 
 //     height: 80px;
-  
 // .logoheader
 //   height: 100%
-  
-
 // #logo 
 //   float:right
 //   -webkit-transform: scale(0.8)
@@ -204,7 +189,6 @@ export default {
 //   transform: scale(0.8)
 //   background: white
 //   height: 100%
-
 // @media only screen and (min-width: 1200px) 
 //   #logo 
 //     float:right
@@ -217,7 +201,6 @@ export default {
 //     -o-transform: scale(1)
 //     transform: scale(0.5)
 //      background: white
-  
 // @media only screen and (min-width: 600px) and (max-width: 1200px) 
 //   #logo 
 //     float:right
@@ -230,7 +213,6 @@ export default {
 //     -o-transform: scale(1)
 //     transform: scale(0.5)
 //     background: white
-
 //   div.item 
 //     display: inline-block;
 //     text-align: center;
@@ -239,28 +221,21 @@ export default {
 //     position: relative;
 //     line-height: 1.5;
 //     top: 5%;
-
-
 // #cd-hamburger-menu, #cd-cart-trigger 
 //   position: absolute;
 //   top: 0;
 //   height: 100%;
-
 // #cd-hamburger-menu a, #cd-cart-trigger a 
 //   width: 60px;
 //   height: 100%;
-
 // #cd-cart-trigger 
 //   left: 0;
-
 // #cd-cart-trigger a 
 //   background: #26292f url("../../assets/images/cart/cd-cart.svg") no-repeat center center;
-
 // @media only screen and (min-width: 1200px) 
 //   #cd-cart-trigger 
 //     /* cart right margin on desktop */
 //     left: 0;
-  
 //   #cd-cart-trigger a 
 //     position: relative;
 //     width: 100px;
