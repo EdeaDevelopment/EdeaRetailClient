@@ -10,5 +10,8 @@ export default {
     },
     totalRegistrations1 (state) {
         return state.registrations1.length
+    },
+    ApiUrlAddress (state) {
+        return state.RetailChainModel.ApiUrlAddress
     }
 }
