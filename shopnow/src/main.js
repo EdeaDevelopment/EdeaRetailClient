@@ -38,7 +38,7 @@ const i18n = new VueI18n({
 
 /* eslint-disable no-new */
 /* eslint-disable no-undef */
-window.app = new Vue({
+const app = new Vue({
   el: '#app',
   router,
   store,
@@ -53,8 +53,9 @@ window.app = new Vue({
       if (itemsCount > 0 && itemsCount < 2) {
         var item = Items[0]
         console.log(JSON.stringify(item))
-        SMPOS.SetItemDetails(JSON.stringify(item))
+        // SMPOS.SetItemDetails(JSON.stringify(item))
       }
+      return true
     },
     TransactionAddItem: function (itemCode) {
       store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
@@ -67,3 +68,4 @@ window.app = new Vue({
   }
 })
 
+window.vue = app
