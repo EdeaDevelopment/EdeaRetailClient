@@ -11,6 +11,7 @@ export default {
     async GetPrerequisiteTransactionData({ commit, state, rootState }) {
         var apiUrl = rootState.RetailChainModel.APIUrlAddress
         var getPrerequisiteTransactionDataResponse = await new TransactionService().GetPrerequisiteTransactionData(apiUrl, new GetPrerequisiteTransactionDataRequest())
+        debugger
         commit('GetPrerequisiteTransactionData', getPrerequisiteTransactionDataResponse)
     },
     async SearchItems({ commit, dispatch, state, rootState }, itemCode) {
