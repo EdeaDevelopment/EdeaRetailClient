@@ -69,15 +69,6 @@ export default {
       list: 'list'
     }
   },
-  mounted() {
-    //  Calculate the height of the list view
-    var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer').clientHeight
-    var headerHeight = document.getElementById('headercart').clientHeight
-    var screenHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-    var buffer = 50
-    var maxHeight = screenHeight - footerHeight - headerHeight - buffer
-    document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
-  },
   methods: {
     removeItem(index) {
       var msg = this.$t('message.removeitemquestion') + '?'
@@ -92,8 +83,6 @@ export default {
 <style scoped lang='scss'>
 @import '../../common/sass/responsive/mediaqueries.scss';
 @import '../../common/sass/localization/rtl.scss';
-
-
 
 
 
