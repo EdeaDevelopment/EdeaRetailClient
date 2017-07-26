@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 <<template>
   <div id='headercart'>
-    <nav class="nav headersize" style="background-color:black; height: 65px">
+    <nav class="nav header">
     <div class="nav-left">
       <a class="nav-item">
         <router-link to="/ShoppingCart">
@@ -89,8 +89,9 @@ export default {
 @import '../../common/sass/base.scss';
 @import '../../common/sass/responsive/mediaqueries.scss';
 
-.headersize {
-  height: $headerheight
+.header {
+  height: $headerheight;
+  background-color: black;
 }
 
 .shoppingcarticon {
