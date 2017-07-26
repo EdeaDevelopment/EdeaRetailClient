@@ -8,6 +8,7 @@ import getters from './getters'
 import userModule from './modules/user/store'
 import ShoppingCartModule from './modules/ShoppingCart/store'
 import ItemsModule from './modules/Items/store'
+import RetailChainModel from '../models/RetailChainModel'
 
 Vue.use(Vuex)
 console.log(getters)
@@ -20,7 +21,8 @@ export const store = new Vuex.Store({
             {id: 2, name: 'Dvir', registered: false},
             {id: 3, name: 'Ahron', registered: false},
             {id: 4, name: 'Shlomi', registered: false}
-        ]
+        ],
+        RetailChainModel: new RetailChainModel('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api')
     },
     getters,
     mutations,

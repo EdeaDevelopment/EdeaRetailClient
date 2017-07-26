@@ -13,5 +13,8 @@ export default {
     },
     loading (state) {
         return state.loading
+    },
+    ApiUrlAddress (state) {
+        return state.RetailChainModel.ApiUrlAddress
     }
 }

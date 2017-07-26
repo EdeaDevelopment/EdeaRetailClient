@@ -9,17 +9,13 @@ import UpdateTransactionRequest from '../../../models/Transactions/UpdateTransac
 import Transaction from '../../../models/Transactions/Transaction'
 import TransactionItem from '../../../models/Transactions/TransactionItem'
 import GetPrerequisiteTransactionDataRequest from '../../../models/Transactions/GetPrerequisiteTransactionDataRequest'
+import TransactionService from '../../../Services/Transactions/TransactionService'
 
 export default {
     async GetPrerequisiteTransactionData({ commit, state, rootState }) {
-        var getPrerequisiteTransactionDataRequest = new GetPrerequisiteTransactionDataRequest()
-
-        await HttpClient.postAsync('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/GetPrerequisiteTransactionData', getPrerequisiteTransactionDataRequest, null, function (response) {
-            commit('GetPrerequisiteTransactionData', response.data)
-        },
-        function (response) {
-            commit('GetPrerequisiteTransactionData', response.data)
-        })
+        var apiUrl = rootState.RetailChainModel.APIUrlAddress
+        var getPrerequisiteTransactionDataResponse = await new TransactionService().GetPrerequisiteTransactionData(apiUrl, new GetPrerequisiteTransactionDataRequest())
+        commit('GetPrerequisiteTransactionData', getPrerequisiteTransactionDataResponse)
     },
     async OpenTransaction({ commit, dispatch, state, rootState }) {
         if (!state.PrerequisiteTransactionData) {
@@ -33,14 +29,9 @@ export default {
 
         openTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
 
-        await HttpClient.postAsync('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/opentransaction', openTransactionRequest, null, function (response) {
-            console.log('tran: ' + response.data)
-            commit('OpenTransaction', response.data)
-        },
-        function (response) {
-            console.log('tran: ' + response.data)
-            commit('OpenTransaction', response.data)
-        })
+        var apiUrl = rootState.RetailChainModel.APIUrlAddress
+        var openTransactionResponse = await new TransactionService().OpenTransaction(apiUrl, openTransactionRequest)
+        commit('OpenTransaction', openTransactionResponse)
     },
     async TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
         rootState.loading = true
@@ -71,7 +62,7 @@ export default {
 
             transactionItems.push(newTransactionItems)
 
-            dispatch('UpdateTransaction', transactionItems)
+            await dispatch('UpdateTransaction', transactionItems)
         }
     },
     async TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
@@ -92,12 +83,9 @@ export default {
         updateTransactionRequest.Transaction.TemporaryTransactionNumber = state.TemporaryTransactionNumber
         updateTransactionRequest.Transaction.TransactionItems = transactionItems
 
-        await HttpClient.postAsync('https://mobileapi.edea.co.il/EdeaRetailAPI.2.0.10.0/api/transactions/updatetransaction', updateTransactionRequest, null, function (response) {
-            commit('UpdateTransaction', response.data)
-        },
-        function (response) {
-            commit('UpdateTransaction', response.data)
-        })
+        var apiUrl = rootState.RetailChainModel.APIUrlAddress
+        var updateTransactionResponse = await new TransactionService().UpdateTransaction(apiUrl, updateTransactionRequest)
+        commit('UpdateTransaction', updateTransactionResponse)
     }
 }
 
