@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 // We can replace the {commit} with the context object
 /* eslint-disable no-unused-vars */
+import HttpClient from '../../../common/HttpClient/HttpClient'
 import OpenTransactionRequest from '../../../models/Transactions/OpenTransactionRequest'
 import UniquePOSIdentifier from '../../../models/Transactions/UniquePOSIdentifier'
 import TransactionProcessingSettings from '../../../models/Transactions/TransactionProcessingSettings'
@@ -25,6 +26,7 @@ export default {
         }
 
         var openTransactionRequest = new OpenTransactionRequest()
+
         openTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
 
         var apiUrl = rootState.RetailChainModel.APIUrlAddress
@@ -32,6 +34,7 @@ export default {
         commit('OpenTransaction', openTransactionResponse)
     },
     async TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
+        rootState.loading = true
         if (!state.Transaction) {
             await dispatch('OpenTransaction')
         }
@@ -42,6 +45,7 @@ export default {
 
             await dispatch('UpdateTransaction', transactionItems)
         }
+        rootState.loading = false
     },
     async TransactionAddItems({ commit, dispatch, state, rootState }, items) {
         if (!state.Transaction) {
@@ -63,10 +67,12 @@ export default {
     },
     async TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
         if (itemIndex > -1 && state.TemporaryTransactionNumber) {
+            rootState.loading = true
             var transactionItems = CurrentTransactionItems(state)
             transactionItems.splice(itemIndex, 1)
 
-            await dispatch('UpdateTransaction', transactionItems)
+           await dispatch('UpdateTransaction', transactionItems)
+           rootState.loading = false
         }
     },
     async UpdateTransaction({ commit, state, rootState }, transactionItems) {

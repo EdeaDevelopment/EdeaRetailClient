@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 <<template>
   <div id='headercart'>
-    <nav class="nav headersize" style="background-color:black; height: 80px">
+    <nav class="nav headersize" style="background-color:black; height: 65px">
     <div class="nav-left">
       <a class="nav-item">
         <router-link to="/ShoppingCart">
@@ -104,7 +104,7 @@ export default {
 
 .spanheader {
   color: white;
-  font-size: x-large;
+  font-size: large;
 }
 
 .spancustomername {
@@ -116,12 +116,13 @@ export default {
   border: 2px solid white;
 }
 
-// @media ('($tablet)') {
-//   .spanheader {
-//     color:white;
-//     font-size: small;
-//   }
-// }
+@media #{$mobileportrait} {  
+  .plusbtn {
+    border-radius: 25px;
+    border: 1px solid white;
+  }
+}
+
 // @media ($tablet) {
 //   .spanheader {
 //     color:white;

@@ -1,36 +1,27 @@
 <<template>
   <div id="ShoppingCart">
     <h3>Shopping Cart</h3>
-    <hr>
-    <div class="row">
-      <h4>
-        {{ TemporaryTransactionNumber }}
-      </h4>
-      <!-- <h4>
-        {{ LeftToPay }}
-      </h4> -->
-      <div>
-      <input type="text" v-model="itemCode"  value="a">
-      </div>
-      <!-- <button @click="OpenTransaction()">Open Transaction</button> -->
-      <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
-      <!-- <button @click="TransactionRemoveItem()">Transaction Remove Item 0</button> -->
-    </div>
+    <input type="text" v-model="itemCode"  value="a">
+    <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button> 
     <listview :transactionItems="TransactionItems"></listview>
-      <div class="columns">
-       <div class="column is-half">
-         <a class="button is-medium is-black footer-button">
-           קופונים
-        </a>
+      <div class="columns is-mobile">
+       <div class="column is-half-mobile is-half-desktop">
+        <router-link to="/Coupons">
+          <a class="button is-info footer-button">
+            {{ $t('message.coupons') }}
+          </a>
+         </router-link>
       </div>
-       <div class="column is-half">
-         <a class="button is-medium is-black footer-button">
-           מימוש נקודות
-           </a>
+       <div class="column is-half-mobile is-half-desktop">
+          <router-link to="/Points">
+            <a class="button is-info footer-button">
+              {{ $t('message.implementpoint') }}           
+            </a>
+           </router-link>
       </div>
     </div>
     <router-link to="/Pay">
-      <button>המשך לתשלום</button>
+      <a class="button is-info footer-button">{{ $t('message.continuetopay') }}</a>
     </router-link>
   </div>
 </template>
@@ -76,10 +67,12 @@ export default {
       'TransactionRemoveItem',
       'removeItem'
     ]),
-    // TransactionAddItem() {
-    //   var itemCode = this.$refs.ItemCode.value
-    //   this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
-    // }
+   // async TransactionAddItem(itemCode) {
+      // var itemCode = this.$refs.ItemCode.value
+     // this.show = true
+    //  await this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
+    //  this.show = false
+   // },
     // TransactionRemoveItem() {
     //   var itemIndex = 0
     //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)
@@ -91,36 +84,34 @@ export default {
   }
 }
 </script>
-<style scoped lang='sass'>
-    @import '../common/sass/base.scss'
-    @import '../common/sass/localization/rtl.scss'
+<style scoped lang='scss'>
+@import '../common/sass/base.scss';
+@import '../common/sass/localization/rtl.scss';
 
-    // #registration 
-    //     box-shadow: 1px 1px 2px 1px #ccc;
-    //     margin: 20px;
-    //     padding: 20px;
-    //     display: inline-block;
-    //     width: 300px;
-    //     vertical-align: top;
-    
-    // .row h4 
-    //     display: inline-block;
-    //     width: 70%;
-    //     text-align: $textalign;
-    //     margin: 0 0 10px 0;
-    //     background-color: $edea-main-color
-    
-    // button 
-    //     background-color: lightgreen;
-    //     border: none;
-    //     box-shadow: 1px 1px 1px black;
-    //     font-size: inherit;
-    //     text-align: $textalign;
-    //     cursor: pointer;
-    
-    // button:hover 
-    //     background-color: green;
-
-       .footer-button
-          width: 120px
+.footer-button {
+  margin-top: 8px;
+  width: 150px;
+  box-shadow: 2px 2px 2px #888888;
+} // #registration 
+//     box-shadow: 1px 1px 2px 1px #ccc;
+//     margin: 20px;
+//     padding: 20px;
+//     display: inline-block;
+//     width: 300px;
+//     vertical-align: top;
+// .row h4 
+//     display: inline-block;
+//     width: 70%;
+//     text-align: $textalign;
+//     margin: 0 0 10px 0;
+//     background-color: $edea-main-color
+// button 
+//     background-color: lightgreen;
+//     border: none;
+//     box-shadow: 1px 1px 1px black;
+//     font-size: inherit;
+//     text-align: $textalign;
+//     cursor: pointer;
+// button:hover 
+//     background-color: green;
 </style>

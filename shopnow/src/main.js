@@ -7,7 +7,9 @@ import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
 import Translations from './common/localization/js/i18n.js'
-import { store } from './store/store'
+import {
+  store
+} from './store/store'
 // only import the icons you use to reduce bundle size
 import 'vue-awesome/icons/shopping-cart'
 import 'vue-awesome/icons/trash-o'
@@ -35,6 +37,7 @@ Vue.mixin({
 // setup locale info for root Vue instance
 const i18n = new VueI18n({
   locale: 'he',
+  fallbackLocale: 'en',
   messages: Translations.messages,
   numberFormats: Translations.numberFormats
 })
@@ -47,7 +50,9 @@ const app = new Vue({
   store,
   i18n: i18n,
   template: '<App/>',
-  components: { App },
+  components: {
+    App
+  },
   methods: {
     SearchItem: async function (itemCode) {
       await store.dispatch('ItemsModule/SearchItems', itemCode)

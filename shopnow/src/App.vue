@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <my-header></my-header>    
+    <loading :show="show" :label="label"></loading>
+    <my-header></my-header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-unused-vars */
+import loading from 'vue-full-loading'
 import MyHeader from '@/components/Headers/Header'
 export default {
   name: 'app',
+  data: {
+    return: {
+      show: false,
+      label: 'Loading...'
+    }
+  },
   components: {
-    MyHeader
+    MyHeader,
+    loading
+  },
+  computed: {
+    show() {
+      return this.$store.getters.loading
+    }
   },
   head: {
     meta: [

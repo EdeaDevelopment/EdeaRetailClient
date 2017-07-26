@@ -15,21 +15,27 @@
             </ul>
             <ul v-if="layout === 'list'" class="list">
                 <li class='pli' refs="pliitem" v-for="(item, index) in transactionItems">
-                    <div class="columns">
+                    <div class="columns is-mobile">
                       <div class="column">
                         <a class="removebtn" @click="removeItem(index)">
-                          <icon name="trash-o" scale="3"></icon>                              
+                          <!-- <icon id="trashicon" name="trash-o" scale="3"></icon>                               -->
+                          <div class="block">
+                          <span class="tag is-danger">
+                            הסר
+                            <button class="delete is-mediun"></button>
+                          </span>
+                        </div>
                         </a>
                       </div>
-                      <div class="column is-three-quarters productdescription">
-                        <h1 class="title titlestyle">{{item.ItemDescription}}</h1>
+                      <div class="column is-three-quarters-desktop is-half-mobile productdescription">
+                         <h1 class="titlestyle">{{item.ItemDescription}}</h1>
                         <h3 class="subtitle subtitlestyle">
                           <span class="productdesfirstline">כמות :{{item.ItemQuantity}} ,{{item.DiscountPercent}}% הנחה, סה"כ נטו לשורה: {{item.TotalPrice}}</span>
                           <span v-if="item.FirstSaleDescription !== ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
-                        </h3>
+                        </h3> 
                       </div>
                       <div class="column">
-                        <figure class="image is-96x96 imagefloat">
+                        <figure class="image imagesize imagefloat">
                           <img v-bind:src="item.image.small">
                         </figure>
                       </div>
@@ -52,6 +58,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
 export default {
   name: 'listview',
   props: ['transactionItems', 'removeitem'],
@@ -64,16 +71,21 @@ export default {
   },
   methods: {
     removeItem(index) {
-      this.$parent.removeItem(index)
+      var msg = this.$t('message.removeitemquestion') + '?'
+      if (window.confirm(msg) === true) {
+        this.$parent.removeItem(index)
+      }
     }
   }
 }
 </script>
 
 <style scoped lang='scss'>
-
 @import '../../common/sass/responsive/mediaqueries.scss';
 @import '../../common/sass/localization/rtl.scss';
+
+
+
 
 
 /* Starting ListView CSS */
@@ -107,6 +119,7 @@ export default {
 
 .titlestyle {
   font-weight: 700;
+  font-size: 30px
 }
 
 .removebtn {
@@ -123,7 +136,6 @@ export default {
 }
 
 .grid-list {
-  background-color: #fff;
   color: #5e5b64;
   font: 17px/1.3 "Open Sans", sans-serif;
   margin: 0 auto; // max-width: 1024px;
@@ -133,7 +145,6 @@ export default {
 }
 
 .grid {
-  background-color: #ddedfb;
   list-style: none;
   margin: 0 auto;
   padding: 20px;
@@ -141,15 +152,10 @@ export default {
   width: 100%;
 }
 
-// .list {
-//   list-style: none;
-//   margin: 0 auto;
-//   padding: 0;
-//   width: 100%;
-//   overflow-y: auto;
-//   max-height: 600px
-// }
-
+.imagesize {
+  height: 128px;
+  width: 128px;
+}
 
 
 .list {
@@ -161,44 +167,97 @@ export default {
   max-height: 600px
 }
 
-
-
-
-@media (max-width: 1024px) {
-  .list {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-    overflow-y: auto;
-    max-height: 800px
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .list {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-    overflow-y: auto;
-    max-height: 700px
-  }
-}
-
-
-
-
+// .list li {
+//   border-bottom: 1px solid #fff;
+//   border-radius: 25px;
+//   border: 2px solid black;
+//   overflow: hidden;
+//   padding: 20px;
+//   transition: background 0.2s linear;
+//   background-color: #ddedfb;
+//   margin-bottom: 5px;
+// } 
 .list li {
-  border-bottom: 1px solid #fff;
-  border-radius: 25px;
-  border: 2px solid black;
+  position: relative;
+  background: #FFF;
   overflow: hidden;
-  padding: 20px;
-  transition: background 0.2s linear;
-  background-color: #ddedfb;
-  margin-bottom: 5px;
-} //a,
+  border-bottom: 1px solid #f5f5f5;
+  min-height: 68px;
+  /* padding-left: 5px; */
+  padding-right: 85px;
+}
+
+@media #{$mobileportrait} {
+  .subtitlestyle {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .titlestyle {
+    font-weight: 700;
+    font-size: 15px
+  }
+  .imagefloat {
+    float: inherit
+  }
+  #trashicon {
+    transform: scale(0.8);
+  }
+  .imagesize {
+    height: inherit;
+    width: inherit
+  }
+  .list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 300px
+  }
+  .grid-list {
+    font: 17px/1.3 "Open Sans", sans-serif;
+    margin: 0px auto; // max-width: 1024px;
+    min-width: 300px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #FFF;
+    background: #FFF;
+    padding: 0 10px;
+  }
+
+  .list li {
+    position: relative;
+    background: #FFF;
+    overflow: hidden;
+    border-bottom: 1px solid #f5f5f5;
+    min-height: 68px;
+    /* padding-left: 5px; */
+    margin-bottom: 2px;
+    padding-right: 1px;
+  }
+}
+
+// @media (max-width: 1024px) {
+//   .list {
+//     list-style: none;
+//     margin: 0 auto;
+//     padding: 0;
+//     width: 100%;
+//     overflow-y: auto;
+//     max-height: 800px
+//   }
+// }
+// @media screen and (max-width: 500px) {
+//   .list {
+//     list-style: none;
+//     margin: 0 auto;
+//     padding: 0;
+//     width: 100%;
+//     overflow-y: auto;
+//     max-height: 700px
+//   }
+// }
+//a,
 //a:visited,
 // a:hover 
 //   color: #389dc1;
@@ -301,6 +360,14 @@ export default {
 //   padding: 0 15px 0 15px;
 //   vertical-align: middle;
 //   width: 100%;
+// .list {
+//   list-style: none;
+//   margin: 0 auto;
+//   padding: 0;
+//   width: 100%;
+//   overflow-y: auto;
+//   max-height: 600px
+// }
 
 /* End ListView CSS */
 </style>
