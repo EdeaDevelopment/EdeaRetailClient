@@ -15,5 +15,6 @@ export default class Transaction {
     this.TotalUsedPointsPriceValue = 0
     this.TotalRequestedUsePoints = 0
     this.LeftToPay = 0
+    this.ShippingEmail = null
   }
 }

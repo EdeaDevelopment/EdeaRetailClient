@@ -1,84 +1,103 @@
 <<template>
   <div id="Pay">
-    <h3>Pay</h3>
+    <h3>תשלום</h3>
     <hr>
-    <div>
-      <input type="email" v-model="itemCode"  placeholder="אימייל לשליחת קבלה">
+    <div class="field inputfield">
+      <div class="control has-icons-left has-icons-right">
+        <float-label>
+          <input v-validate="'required|email'" v-model="shippingEmail" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" v-bind:placeholder="$t('message.reciptemail')">
+          <span v-show="errors.has('email')" class="help is-danger" style="direction:rtl">{{ errors.first('email') }}</span>
+        </float-label>
+        <span class="icon is-small is-left">
+                    <icon name="envelope" scale="2"></icon> 
+              </span>
+      </div>
     </div>
     </br>
-    <div>
+    <div class="footer">
       <router-link to="/Pay">
-        <button type="button">תשלום בכרטיס מתנה</button>
+        <a class="button paymentbtn" v-on:click="GiftCardPayment">
+          <span class="icon is-small">
+              <icon name="gift" scale="2"></icon>             
+           </span>
+          <span>{{ $t('message.payingiftcard') }}</span>
+        </a>
       </router-link>
-    </div>
-    </br>
-    <div>
       <router-link to="/Pay">
-        <button type="button">תשלום בכרטיס אשראי</button>
+        <a class="button paymentbtn" v-on:click="CreditCardPayment">
+          <span class="icon is-small">
+              <icon name="credit-card" scale="2"></icon>             
+           </span>
+          <span>{{ $t('message.payincreditcard') }}</span>
+        </a>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import ListView from '@/components/Collections/ListView'
-import { mapGetters, mapActions } from 'vuex'
 export default {
-  name: 'shoppingcart',
+  name: 'pay',
   data() {
     return {
-      itemCode: ''
+      itemCode: '',
+      shippingEmail: ''
     }
   },
-  components: {
-    'listview': ListView
-  },
-  computed: {
-    ...mapGetters('ShoppingCartModule', [
-      'TemporaryTransactionNumber',
-      'LeftToPay',
-      'PrerequisiteTransactionData',
-      'TransactionItems'
-    ])
-    // TemporaryTransactionNumber() {
-    //   return this.$store.getters['ShoppingCartModule/TemporaryTransactionNumber']
-    // },
-    // LeftToPay() {
-    //   return this.$store.getters['ShoppingCartModule/LeftToPay']
-    // },
-    // PrerequisiteTransactionData() {
-    //   return this.$store.getters['ShoppingCartModule/CurrentPrerequisiteTransactionData']
-    // },
-    // transaction() {
-    //   var temptransaction = this.$store.getters['ShoppingCartModule/TransactionItems']
-    //   return temptransaction
-    // }
-  },
   methods: {
-    ...mapActions('ShoppingCartModule', [
-      'OpenTransaction',
-      'TransactionAddItem',
-      'TransactionRemoveItem',
-      'removeItem'
-    ]),
-    removeItem(index) {
-      this.log('remove item from mixin')
-      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
+    GiftCardPayment() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          // eslint-disable-next-line
+          this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.shippingEmail)
+          window.alert('אי מייל עודכן בהצלחה!')
+          return
+        }
+        window.alert('אי מייל שדה חובה, נא למלא את השדה באי מייל תקין')
+      })
+    },
+    CreditCardPayment() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          // eslint-disable-next-line
+          this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.shippingEmail)
+          window.alert('אי מייל עודכן בהצלחה!')
+          return
+        }
+        window.alert('אי מייל שדה חובה, נא למלא את השדה באי מייל תקין')
+      })
     }
   }
 }
 </script>
-<style scoped lang='sass'>
-    @import '../common/sass/base.scss'
-    @import '../common/sass/localization/rtl.scss'
-    button 
-        background-color: lightgreen;
-        border: none;
-        box-shadow: 1px 1px 1px black;
-        font-size: inherit;
-        text-align: $textalign;
-        cursor: pointer;
-    
-    button:hover 
-        background-color: green;
+<style lang='scss'>
+@import '../common/sass/base.scss';
+.inputfield {
+  padding: 10px;
+}
+
+.vfl-label-on-focus {
+  color: #aaa;
+}
+
+.paymentbtn {
+  width: 200px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white;
+}
+
+.paymentbtn:hover {
+  color: white;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
 </style>

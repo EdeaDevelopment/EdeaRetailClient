@@ -86,6 +86,13 @@ export default {
         var apiUrl = rootState.RetailChainModel.APIUrlAddress
         var updateTransactionResponse = await new TransactionService().UpdateTransaction(apiUrl, updateTransactionRequest)
         commit('UpdateTransaction', updateTransactionResponse)
+    },
+
+    UpdateTransactionShippingEmail({ commit, state, rootState }, shippingEmail) {
+        var transactionItemsAlreadyExists = state.Transaction
+        if (transactionItemsAlreadyExists) {
+            state.Transaction.ShippingEmail = shippingEmail
+        }
     }
 }
 

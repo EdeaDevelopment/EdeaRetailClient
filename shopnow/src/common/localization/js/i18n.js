@@ -29,7 +29,10 @@ const messages = {
       implementpoint: 'מימוש נקודות',
       continuetopay: 'המשך לתשלום',
       removeitemquestion: 'האם אתה בטוח שאתה רוצה להסיר את הפריט',
-      loading: '...טוען'
+      loading: '...טוען',
+      reciptemail: 'אי מייל לשליחת קבלה',
+      payingiftcard: 'תשלום בכרטיס מתנה',
+      payincreditcard: 'תשלום בכרטיס אשראי'
     }
   }
 }

@@ -12,17 +12,29 @@ import {
 } from './store/store'
 // only import the icons you use to reduce bundle size
 import 'vue-awesome/icons/shopping-cart'
-import 'vue-awesome/icons/trash-o'
+import 'vue-awesome/icons/envelope'
+import 'vue-awesome/icons/credit-card'
+import 'vue-awesome/icons/gift'
 import Icon from 'vue-awesome/components/Icon'
 import VueHead from 'vue-head'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
+import VueFloatLabel from 'vue-float-label'
+import VeeValidate, { Validator } from 'vee-validate'
+import he from 'vee-validate/dist/locale/he'
 
 Vue.config.productionTip = false
 Vue.use(VueHead)
 Vue.use(VueI18n)
 Vue.use(Buefy)
+Vue.use(VueFloatLabel)
 
+//  Add locale helper.
+Validator.addLocale(he)
+
+Vue.use(VeeValidate, {
+  locale: 'he'
+})
 // globally (in your main .js file)
 Vue.component('icon', Icon)
 
