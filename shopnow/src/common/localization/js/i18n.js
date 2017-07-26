@@ -15,7 +15,8 @@ const messages = {
       hello: 'hello componen454ft124',
       subTotal: 'SubTotal',
       currency: 'USD',
-      coupons: 'coupons'
+      coupons: 'coupons',
+      loading: 'loading...'
     }
   },
   he: {
@@ -27,7 +28,8 @@ const messages = {
       coupons: 'קופונים',
       implementpoint: 'מימוש נקודות',
       continuetopay: 'המשך לתשלום',
-      removeitemquestion: 'האם אתה בטוח שאתה רוצה להסיר את הפריט'
+      removeitemquestion: 'האם אתה בטוח שאתה רוצה להסיר את הפריט',
+      loading: '...טוען'
     }
   }
 }

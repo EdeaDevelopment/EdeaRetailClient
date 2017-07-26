@@ -1,60 +1,59 @@
 <<template>
-    <div id="listviewid">
-        <section id="js-grid-list" class="grid-list" v-cloak>
-            <div class="tool-bar">
-                <!-- These link buttons use Vue.js to bind click events to change the "layout" variable and bind an active class -->
-                <!-- <a class="list-icon" v-on:click="layout = 'list'" v-bind:class="{ 'active': layout == 'list'}" title="List"></a>
-                <a class="grid-icon" v-on:click="layout = 'grid'" v-bind:class="{ 'active': layout == 'grid'}" title="Grid"></a> -->
-            </div>
-            <!-- Vue.js lets us choose which UL to show depending on the "layout" variable -->
-            <ul v-if="layout === 'grid'" class="grid">
-                <!-- A "grid" view with photos only -->
-                <li v-for="blog in transactionItems">
-                    <a v-bind:href="blog.url" v-bind:style="{ backgroundImage: 'url(' + blog.image.large + ')' }" target="_blank"></a>
-                </li>
-            </ul>
-            <ul v-if="layout === 'list'" class="list">
-                <li class='pli' refs="pliitem" v-for="(item, index) in transactionItems">
-                    <div class="columns is-mobile">
-                      <div class="column">
-                        <a class="removebtn" @click="removeItem(index)">
-                          <!-- <icon id="trashicon" name="trash-o" scale="3"></icon>                               -->
-                          <div class="block">
-                          <span class="tag is-danger">
-                            הסר
-                            <button class="delete is-mediun"></button>
-                          </span>
-                        </div>
-                        </a>
-                      </div>
-                      <div class="column is-three-quarters-desktop is-half-mobile productdescription">
-                         <h1 class="titlestyle">{{item.ItemDescription}}</h1>
-                        <h3 class="subtitle subtitlestyle">
-                          <span class="productdesfirstline">כמות :{{item.ItemQuantity}} ,{{item.DiscountPercent}}% הנחה, סה"כ נטו לשורה: {{item.TotalPrice}}</span>
-                          <span v-if="item.FirstSaleDescription !== ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
-                        </h3> 
-                      </div>
-                      <div class="column">
-                        <figure class="image imagesize imagefloat">
-                          <img v-bind:src="item.image.small">
-                        </figure>
-                      </div>
-                      
+  <div id="listviewid">
+    <section id="js-grid-list" class="grid-list" v-cloak>
+      <div class="tool-bar">
+        <!-- These link buttons use Vue.js to bind click events to change the "layout" variable and bind an active class -->
+        <!-- <a class="list-icon" v-on:click="layout = 'list'" v-bind:class="{ 'active': layout == 'list'}" title="List"></a>
+                  <a class="grid-icon" v-on:click="layout = 'grid'" v-bind:class="{ 'active': layout == 'grid'}" title="Grid"></a> -->
+      </div>
+      <!-- Vue.js lets us choose which UL to show depending on the "layout" variable -->
+      <ul v-if="layout === 'grid'" class="grid">
+        <!-- A "grid" view with photos only -->
+        <li v-for="blog in transactionItems">
+          <a v-bind:href="blog.url" v-bind:style="{ backgroundImage: 'url(' + blog.image.large + ')' }" target="_blank"></a>
+        </li>
+      </ul>
+      <ul v-if="layout === 'list'" class="list">
+        <li class='pli' refs="pliitem" v-for="(item, index) in transactionItems">
+          <div class="columns is-mobile">
+            <div class="column">
+              <a class="removebtn" @click="removeItem(index)">
+                <!-- <icon id="trashicon" name="trash-o" scale="3"></icon>                               -->
+                <div class="block">
+                  <span class="tag is-danger">
+                              הסר
+                              <button class="delete is-mediun"></button>
+                            </span>
                 </div>
-                </li>
-            </ul>
-             <!-- <a target="_blank">
-                        <img v-bind:src="item.image.small">
-                        <div style="position:relative; height:300px; overflow-y:scroll;">
-                          <h4 id="fat">{{item.ItemDescription}}</h4>
-                          <p v-for="i in 1">
-                            {{item.ItemQuantity}},{{item.DiscountPercent}} אחוז הנחה
-                          </p>
-                        </div>
-                        <button class="btnremove" @click="removeItem(index)">X</button>
-                    </a> -->
-        </section>        
-    </div>
+              </a>
+            </div>
+            <div class="column is-three-quarters-desktop is-half-mobile productdescription">
+              <h1 class="titlestyle">{{item.ItemDescription}}</h1>
+              <h3 class="subtitle subtitlestyle">
+                <span class="productdesfirstline">כמות :{{item.ItemQuantity}} ,{{item.DiscountPercent}}% הנחה, סה"כ נטו לשורה: {{item.TotalPrice}}</span>
+                <span v-if="item.FirstSaleDescription !== ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
+              </h3>
+            </div>
+            <div class="column">
+              <figure class="image imagesize imagefloat">
+                <img v-bind:src="item.image.small">
+              </figure>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!-- <a target="_blank">
+                          <img v-bind:src="item.image.small">
+                          <div style="position:relative; height:300px; overflow-y:scroll;">
+                            <h4 id="fat">{{item.ItemDescription}}</h4>
+                            <p v-for="i in 1">
+                              {{item.ItemQuantity}},{{item.DiscountPercent}} אחוז הנחה
+                            </p>
+                          </div>
+                          <button class="btnremove" @click="removeItem(index)">X</button>
+                      </a> -->
+    </section>
+  </div>
 </template>
 
 <script>
@@ -68,6 +67,15 @@ export default {
       layout: 'list',
       list: 'list'
     }
+  },
+  mounted() {
+    //  Calculate the height of the list view
+    var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer').clientHeight
+    var headerHeight = document.getElementById('headercart').clientHeight
+    var screenHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    var buffer = 50
+    var maxHeight = screenHeight - footerHeight - headerHeight - buffer
+    document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
   },
   methods: {
     removeItem(index) {
@@ -83,10 +91,6 @@ export default {
 <style scoped lang='scss'>
 @import '../../common/sass/responsive/mediaqueries.scss';
 @import '../../common/sass/localization/rtl.scss';
-
-
-
-
 
 /* Starting ListView CSS */
 
@@ -157,7 +161,6 @@ export default {
   width: 128px;
 }
 
-
 .list {
   list-style: none;
   margin: 0 auto;
@@ -165,9 +168,7 @@ export default {
   width: 100%;
   overflow-y: auto;
   max-height: 600px
-}
-
-// .list li {
+} // .list li {
 //   border-bottom: 1px solid #fff;
 //   border-radius: 25px;
 //   border: 2px solid black;
@@ -224,7 +225,6 @@ export default {
     background: #FFF;
     padding: 0 10px;
   }
-
   .list li {
     position: relative;
     background: #FFF;
@@ -235,9 +235,7 @@ export default {
     margin-bottom: 2px;
     padding-right: 1px;
   }
-}
-
-// @media (max-width: 1024px) {
+} // @media (max-width: 1024px) {
 //   .list {
 //     list-style: none;
 //     margin: 0 auto;

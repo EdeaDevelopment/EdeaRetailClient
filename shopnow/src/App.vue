@@ -12,10 +12,9 @@ import loading from 'vue-full-loading'
 import MyHeader from '@/components/Headers/Header'
 export default {
   name: 'app',
-  data: {
-    return: {
-      show: false,
-      label: 'Loading...'
+  data() {
+    return {
+      label: this.$t('message.loading')
     }
   },
   components: {
