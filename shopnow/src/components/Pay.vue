@@ -1,109 +1,96 @@
 <<template>
   <div id="Pay" class="pagesize">
     <h3>תשלום</h3>
-     <div class="field inputfield">
-        <div class="control has-icons-left has-icons-right">
-          <float-label>
-            <input v-validate="'required|email'" v-model="shippingEmail" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" v-bind:placeholder="$t('message.reciptemail')">
-            <span v-show="errors.has('email')" class="help is-danger" style="direction:rtl">{{ errors.first('email') }}</span>
-          </float-label>
-          <span class="icon is-small is-left">
-                      <icon name="envelope" scale="2"></icon> 
-                </span>
-        </div>
-      </div>
+    <emailinput v-model="shippingEmail" ref="eins"></emailinput>     
     <div class="mainimage">
       <div class="footer">
-        <router-link to="/Pay">
-          <a class="button paymentbtn" v-on:click="GiftCardPayment">
-            <span class="icon is-small">
-                <icon name="gift" scale="2"></icon>             
-             </span>
-            <span>{{ $t('message.payingiftcard') }}</span>
-          </a>
-        </router-link>
-        <router-link to="/Pay">
-          <a class="button paymentbtn" v-on:click="CreditCardPayment">
-            <span class="icon is-small">
-                <icon name="credit-card" scale="2"></icon>             
-             </span>
-            <span>{{ $t('message.payincreditcard') }}</span>
-          </a>
-        </router-link>
+        <a class="button paymentbtn" v-on:click="VerifyEmailAndNavigate('GiftCardPayment')">
+          <span class="icon is-small">
+              <icon name="gift" scale="2"></icon>             
+            </span>
+          <span>{{ $t('message.payingiftcard') }}</span>
+        </a>
+        <a class="button paymentbtn" v-on:click="VerifyEmailAndNavigate('CreditCardPayment')">
+          <span class="icon is-small">
+              <icon name="credit-card" scale="2"></icon>             
+            </span>
+          <span>{{ $t('message.payincreditcard') }}</span>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'pay',
-    data() {
-      return {
-        itemCode: '',
-        shippingEmail: ''
+import emailinput from '@/components/Elements/Inputs/EmailInput'
+export default {
+  name: 'pay',
+  data() {
+    return {
+      itemCode: '',
+      shippingEmail: ''
+    }
+  },
+  components: {
+    emailinput
+  },
+  methods: {
+    async VerifyEmailAndNavigate(paymentPage) {
+      var result = await this.$refs.eins.validate()
+      if (result) {
+        this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.shippingEmail.value)
+        this.$router.push('/Payments/' + paymentPage)
+        return
       }
-    },
-    methods: {
-      GiftCardPayment() {
-        this.$validator.validateAll().then(result => {
-          if (result) {
-            // eslint-disable-next-line
-            this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.shippingEmail)
-            window.alert('אי מייל עודכן בהצלחה!')
-            return
-          }
-          window.alert('אי מייל שדה חובה, נא למלא את השדה באי מייל תקין')
-        })
-      },
-      CreditCardPayment() {
-        this.$validator.validateAll().then(result => {
-          if (result) {
-            // eslint-disable-next-line
-            this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.shippingEmail)
-            window.alert('אי מייל עודכן בהצלחה!')
-            return
-          }
-          window.alert('אי מייל שדה חובה, נא למלא את השדה באי מייל תקין')
-        })
-      }
+      window.alert('אי מייל שדה חובה, נא למלא את השדה באי מייל תקין')
     }
   }
+}
 </script>
-<style lang='scss'>
-  @import '../common/sass/base.scss';
-  .pagesize {
-    height: 100%;
-  }
-  .inputfield {
-    padding: 10px;
-  }
-  .mainimage {
-    height: 45%;
-    background-repeat: no-repeat;
-    background-image: url("http://images.globes.co.il/images/NewGlobes/big_image_800/2015/e08_SCOTTCHAN575.jpg");
-    background-position: center center;
-    background-size: cover;
-  }
-  .vfl-label-on-focus {
-    color: #aaa;
-  }
-  .paymentbtn {
-    width: 200px;
-    margin-bottom: 10px;
-    background-color: black;
-    color: white;
-  }
-  .paymentbtn:hover {
-    color: white;
-  }
-  .footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    background-color: #efefef;
-    text-align: center;
-  }
+<style lang='scss' scoped>
+@import '../common/sass/base.scss';
+.pagesize {
+  height: 100%;
+}
+
+.inputfield {
+  padding: 10px;
+}
+
+.mainimage {
+  height: 45%;
+  background-repeat: no-repeat;
+  background-image: url("http://images.globes.co.il/images/NewGlobes/big_image_800/2015/e08_SCOTTCHAN575.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+.vfl-label-on-focus {
+  color: #aaa;
+}
+
+.paymentbtn {
+  width: 200px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white;
+}
+
+.paymentbtn:hover {
+  color: white;
+}
+
+.vfl-label-on-focus {
+  color: black;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
 </style>

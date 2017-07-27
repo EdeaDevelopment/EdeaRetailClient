@@ -3,15 +3,12 @@
 // Ready translated locale messages
 const messages = {
   ja: {
-    message:
-    {
+    message: {
       hello: 'こんにちは、世界'
     }
   },
-  en:
-  {
-    message:
-    {
+  en: {
+    message: {
       hello: 'hello componen454ft124',
       subTotal: 'SubTotal',
       currency: 'USD',
@@ -20,8 +17,7 @@ const messages = {
     }
   },
   he: {
-    message:
-    {
+    message: {
       hello: 'שלום',
       subTotal: 'סכום ביניים',
       currencySymbol: 'ש"ח',
@@ -32,7 +28,11 @@ const messages = {
       loading: '...טוען',
       reciptemail: 'אי מייל לשליחת קבלה',
       payingiftcard: 'תשלום בכרטיס מתנה',
-      payincreditcard: 'תשלום בכרטיס אשראי'
+      payincreditcard: 'תשלום בכרטיס אשראי',
+      cardnumber: 'מספר כרטיס',
+      serialnumber: 'מספר סידורי',
+      cancel: 'ביטול',
+      approvepayment: 'אישור תשלום'
     }
   }
 }
@@ -40,17 +40,23 @@ const messages = {
 const numberFormats = {
   'en-US': {
     currency: {
-      style: 'currency', currency: 'ILS', currencyDisplay: 'symbol'
+      style: 'currency',
+      currency: 'ILS',
+      currencyDisplay: 'symbol'
     }
   },
   'he': {
     currency: {
-      style: 'currency', currency: 'ILS', currencyDisplay: 'symbol'
+      style: 'currency',
+      currency: 'ILS',
+      currencyDisplay: 'symbol'
     }
   },
   'ja-JP': {
     currency: {
-      style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
+      style: 'currency',
+      currency: 'JPY',
+      currencyDisplay: 'symbol'
     }
   }
 }
@@ -59,4 +65,3 @@ module.exports = {
   messages,
   numberFormats
 }
-

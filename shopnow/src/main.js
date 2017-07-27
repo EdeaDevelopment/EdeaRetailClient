@@ -42,6 +42,9 @@ Vue.mixin({
   methods: {
     log(msg) {
       console.log(msg)
+    },
+    isRtl() {
+      return true
     }
   }
 })
