@@ -98,7 +98,7 @@
     box-sizing: border-box
   }
   .fittext {
-        margin: -2px -5px;
+        
   }
   .salesnewline {
     display: block;
@@ -108,11 +108,10 @@
     padding: 0px;
   }
   .titlepos {
-    padding: 8px;
-    position: relative;
+
   }
-  .licontent {
-    margin-bottom: 0px;
+  .licontent {    
+    margin-bottom: 6px;
   }
   .imagefloat {
     //float: $left
@@ -124,12 +123,13 @@
   }
   .productdescription {
     text-align: $left;
+    padding-top: 2px;
   }  
   .productdesfirstline {
     position: relative;
   }
   .fulllinedescription {
-    padding: 0px;
+    padding-top: 0px;
   }
   .titlestyle {
     font-weight: 700;

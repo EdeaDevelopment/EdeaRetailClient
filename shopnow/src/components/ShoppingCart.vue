@@ -5,7 +5,7 @@
     <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
     <listview :transactionItems="TransactionItems"></listview>
     <div class="footer">
-      <div class="columns is-mobile">
+      <div class="columns is-mobile removemarginbottom">
         <div class="column is-half-mobile is-half-desktop">
           <router-link to="/Coupons">
             <a class="button is-info footer-button">
@@ -92,17 +92,20 @@
 <style scoped lang='scss'>
   @import '../common/sass/base.scss';
   @import '../common/sass/localization/rtl.scss';
+  .removemarginbottom {
+    margin-bottom: 0px;
+  }
   .footer {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 1rem;
+    padding: 5px;
     background-color: #efefef;
     text-align: center;
   }
   .footer-button {
-    margin-top: 8px;
+    //margin-top: 8px;
     width: 150px;
     box-shadow: 2px 2px 2px #888888;
   } // #registration 
