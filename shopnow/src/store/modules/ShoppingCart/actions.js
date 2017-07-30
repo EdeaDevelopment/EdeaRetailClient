@@ -47,20 +47,17 @@ export default {
         }
         rootState.loading = false
     },
-    async TransactionAddItems({ commit, dispatch, state, rootState }, items) {
+    async TransactionAddItems({ commit, dispatch, state, rootState }, itemsCode) {
         if (!state.Transaction) {
             await dispatch('OpenTransaction')
         }
 
-        if (items && items.length > 0 && state.TemporaryTransactionNumber) {
+        if (itemsCode && itemsCode.length > 0 && state.TemporaryTransactionNumber) {
             var transactionItems = CurrentTransactionItems(state)
 
-            var newTransactionItems = []
-            items.array.forEach(function(itemCode) {
-                newTransactionItems.push(FillTransactionItem(state, itemCode))
+            itemsCode.forEach(function(itemCode) {
+                transactionItems.push(FillTransactionItem(state, itemCode))
             }, this)
-
-            transactionItems.push(newTransactionItems)
 
             await dispatch('UpdateTransaction', transactionItems)
         }
@@ -85,7 +82,7 @@ export default {
 
         var apiUrl = rootState.RetailChainModel.APIUrlAddress
         var updateTransactionResponse = await new TransactionService().UpdateTransaction(apiUrl, updateTransactionRequest)
-        commit('UpdateTransaction', updateTransactionResponse)
+       commit('UpdateTransaction', updateTransactionResponse)
     },
 
     UpdateTransactionShippingEmail({ commit, state, rootState }, shippingEmail) {

@@ -82,7 +82,8 @@ const app = new Vue({
       return true
     },
     TransactionAddItems: function (items) {
-      store.dispatch('ShoppingCartModule/TransactionAddItems', items)
+      var itemsCode = JSON.parse(items)
+      store.dispatch('ShoppingCartModule/TransactionAddItems', itemsCode)
       return true
     }
   }
