@@ -30,7 +30,7 @@ export default {
     }
 }
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
 @import '/../../../common/sass/base.scss';
 @import '/../../../common/sass/localization/directional.scss';
 .labeldir {
@@ -43,11 +43,12 @@ export default {
 }
 
 .vfl-label-on-focus {
-    color: #aaa;
+    color: #aaa !important;
 }
 
 .vfl-label {
-    text-align: right;
+    text-align: $left;
+    direction: $dir
 }
 
 .help.is-danger {

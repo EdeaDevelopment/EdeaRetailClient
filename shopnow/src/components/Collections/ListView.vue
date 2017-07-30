@@ -14,48 +14,46 @@
         </li>
       </ul>
       <ul v-if="layout === 'list'" class="list">
-        <li class='pli' refs="pliitem" v-for="(item, index) in transactionItems">
-          <div class="columns is-mobile">
-            <div class="column">
-              <figure class="image imagesize imagefloat">
+        <li refs="pliitem" v-for="(item, index) in transactionItems" class="pli">
+          <div class="columns is-mobile pli">
+            <div class="column is-2 fixpadding">
+              <figure class="image imagesize">
                 <img v-bind:src="item.image.small">
               </figure>
             </div>
-            <div class="column is-three-quarters-desktop is-half-mobile productdescription">
-              <h1 class="titlestyle">{{item.ItemDescription}}</h1>
-              <h3 class="subtitle subtitlestyle">
-                <span class="productdesfirstline">כמות :{{item.ItemQuantity}} ,{{item.DiscountPercent}}% הנחה, סה"כ נטו לשורה: {{item.TotalPrice}}</span>
-                <span v-if="item.FirstSaleDescription !== ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
-              </h3>
-            </div>
-            <div class="column">
-              <a class="removebtn" @click="removeItem(index)">
-                <!-- <icon id="trashicon" name="trash-o" scale="3"></icon>                               -->
-                <div class="block">
-                  <span class="tag is-danger">
+            <div class="column is-10 productdescription">
+              <div class="columns is-mobile licontent">
+                <div class="column is-10-mobile titlepos">
+                  <h1 class="titlestyle">{{item.ItemDescription}}</h1>
+                </div>
+                <div class="column is-2-mobile">
+                  <a class="removebtn" @click="removeItem(index)">
+                    <div class="block removelocation">
+                      <span class="tag is-danger">
                                 הסר
                                 <button class="delete is-mediun"></button>
-                              </span>
+                      </span>
+                    </div>
+                  </a>
                 </div>
-              </a>
+              </div>
+              <div class="columns fittext">
+                <div class="column is-12-mobile fulllinedescription">
+                  <h3 class="subtitle subtitlestyle">
+                  <span class="productdesfirstline">כמות :{{item.ItemQuantity}},</span>
+                  <span v-if="item.DiscountPercent >= 0">{{item.DiscountPercent}}% הנחה, </span>
+                  <span>סה"כ נטו לשורה: {{item.TotalPrice}}</span>
+                  <span class="salesnewline" v-if="item.FirstSaleDescription === ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
+              </h3>
+                </div>
+              </div>              
             </div>
           </div>
         </li>
       </ul>
-      <!-- <a target="_blank">
-                            <img v-bind:src="item.image.small">
-                            <div style="position:relative; height:300px; overflow-y:scroll;">
-                              <h4 id="fat">{{item.ItemDescription}}</h4>
-                              <p v-for="i in 1">
-                                {{item.ItemQuantity}},{{item.DiscountPercent}} אחוז הנחה
-                              </p>
-                            </div>
-                            <button class="btnremove" @click="removeItem(index)">X</button>
-                        </a> -->
     </section>
   </div>
 </template>
-
 <script>
   /* eslint-disable no-undef */
   export default {
@@ -72,7 +70,7 @@
       //  Calculate the height of the list view
       var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer').clientHeight
       var headerHeight = document.getElementById('headercart').clientHeight
-      var screenHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+      var screenHeight = window.innerHeight
       var buffer = 50
       var maxHeight = screenHeight - footerHeight - headerHeight - buffer
       document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
@@ -99,23 +97,46 @@
   * {
     box-sizing: border-box
   }
+  .fittext {
+        margin: -2px -5px;
+  }
+  .salesnewline {
+    display: block;
+  }
+  .pli {
+    margin: 0px;
+    padding: 0px;
+  }
+  .titlepos {
+    padding: 8px;
+    position: relative;
+  }
+  .licontent {
+    margin-bottom: 0px;
+  }
   .imagefloat {
-    float: $left
+    //float: $left
+    padding: 0px;
+    margin: 0px;
   }
   .scrolling {
     overflow-y: scroll;
   }
   .productdescription {
     text-align: $left;
-  }
+  }  
   .productdesfirstline {
-    display: block;
+    position: relative;
+  }
+  .fulllinedescription {
+    padding: 0px;
   }
   .titlestyle {
     font-weight: 700;
     font-size: 30px
   }
   .removebtn {
+    margin-bottom: -12px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -144,8 +165,8 @@
     width: 100%;
   }
   .imagesize {
-    height: 128px;
-    width: 128px;
+    height: 64px !important;
+    width: 64px !important;
   }
   .list {
     list-style: none;
@@ -168,7 +189,7 @@
     position: relative;
     background: #FFF;
     overflow: hidden;
-    border-bottom: 1px solid #f5f5f5;
+    //border-bottom: 1px solid #f5f5f5;
     min-height: 68px;
     /* padding-left: 5px; */
     padding-right: 85px;
@@ -177,6 +198,9 @@
     .subtitlestyle {
       font-weight: 400;
       font-size: 14px;
+    }
+    .fixpadding {
+      padding: 0px;
     }
     .titlestyle {
       font-weight: 700;
@@ -189,32 +213,31 @@
       transform: scale(0.8);
     }
     .imagesize {
-      height: inherit;
-      width: inherit
+      height: 64px;
+      width: 64px;
     }
     .list {
       list-style: none;
       margin: 0 auto;
-      padding: 0;
+      padding: 2px;
       width: 100%;
       overflow-y: auto;
       max-height: 300px
     }
     .grid-list {
       font: 17px/1.3 "Open Sans", sans-serif;
-      margin: 0px auto; // max-width: 1024px;
+      margin: 6px; // max-width: 1024px;
+      padding: 2px;
       min-width: 300px;
-      padding: 10px;
       text-align: center;
       border: 1px solid #FFF;
       background: #FFF;
-      padding: 0 10px;
     }
     .list li {
       position: relative;
       background: #FFF;
       overflow: hidden;
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 2px solid #f5f5f5;
       min-height: 68px;
       /* padding-left: 5px; */
       margin-bottom: 2px;
