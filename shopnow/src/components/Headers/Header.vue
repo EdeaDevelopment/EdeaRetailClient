@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 <<template>
   <div id='headercart'>
-    <nav class="nav header">
+    <nav class="nav customheader">
     <div class="nav-left">
       <a class="nav-item">
         <router-link to="/ShoppingCart">
@@ -99,9 +99,9 @@ export default {
 @import '../../common/sass/base.scss';
 @import '../../common/sass/responsive/mediaqueries.scss';
 
-.header {
-  height: $headerheight;
-  background-color: black;
+.customheader {
+  height: $headerheight !important;
+  background-color: black !important;
 }
 
 .shoppingcarticon {
@@ -123,14 +123,14 @@ export default {
 }
 
 .plusbtn {
-  border-radius: 25px;
-  border: 2px solid white;
+  border-radius: 25px !important;
+  border: 2px solid white !important;
 }
 
 @media #{$mobileportrait} {  
   .plusbtn {
-    border-radius: 25px;
-    border: 1px solid white;
+    border-radius: 25px !important;
+    border: 1px solid white !important;
   }
 }
 

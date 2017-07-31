@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable indent */
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
@@ -7,12 +8,12 @@ import ShoppingCart from '@/components/ShoppingCart'
 import Coupons from '@/components/Coupons'
 import Points from '@/components/Points'
 import Pay from '@/components/Pay'
+import GiftCardPayment from '@/components/Payments/GiftCardPayment'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/Hello',
       name: 'Hello',
       component: Hello
@@ -26,6 +27,11 @@ export default new Router({
       path: '/Pay',
       name: 'Pay',
       component: Pay
+    },
+    {
+      path: '/Payments/GiftCardPayment',
+      name: 'GiftCardPayment',
+      component: GiftCardPayment
     },
     {
       path: '/Coupons',
