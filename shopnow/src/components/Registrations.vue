@@ -30,7 +30,9 @@ export default {
   /* eslint-disable no-undef */
   methods: {
     registerUser (user) {
-      console.log(user.id)
+      var url = window.location.href
+      url += '?SetBranchName=' + 'XXXXXXXX'
+      window.location.href = url
       SMPOS.SetBranchName('XXXXXXXX')
       // this.$store.dispatch('userModule/register', user.id)
     }

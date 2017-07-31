@@ -83,7 +83,13 @@ export default {
   methods: {
     cartTrigger(event) { },
     AddItems() {
-      SMPOS.Scan('')
+      var headerHeight = document.getElementById('headercart').offsetHeight
+      var url = window.location.href
+      url += '?Scan=' + headerHeight
+      window.location.href = url
+      if (SMPOS !== undefined) {
+        SMPOS.Scan(headerHeight)
+      }
     }
   }
 }

@@ -53,6 +53,8 @@ export default {
         }
 
         if (itemsCode && itemsCode.length > 0 && state.TemporaryTransactionNumber) {
+            rootState.loading = true
+
             var transactionItems = CurrentTransactionItems(state)
 
             itemsCode.forEach(function(itemCode) {
@@ -60,11 +62,14 @@ export default {
             }, this)
 
             await dispatch('UpdateTransaction', transactionItems)
+
+            rootState.loading = false
         }
     },
     async TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
         if (itemIndex > -1 && state.TemporaryTransactionNumber) {
             rootState.loading = true
+
             var transactionItems = CurrentTransactionItems(state)
             transactionItems.splice(itemIndex, 1)
 
