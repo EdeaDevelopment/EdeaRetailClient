@@ -20,7 +20,10 @@ import VueHead from 'vue-head'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import VueFloatLabel from 'vue-float-label'
-import VeeValidate, { Validator } from 'vee-validate'
+import VueEventBus from 'vue-event-bus'
+import VeeValidate, {
+  Validator
+} from 'vee-validate'
 import he from 'vee-validate/dist/locale/he'
 
 Vue.config.productionTip = false
@@ -28,6 +31,7 @@ Vue.use(VueHead)
 Vue.use(VueI18n)
 Vue.use(Buefy)
 Vue.use(VueFloatLabel)
+Vue.use(VueEventBus)
 
 //  Add locale helper.
 Validator.addLocale(he)

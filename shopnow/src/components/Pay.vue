@@ -2,7 +2,6 @@
   <div id="Pay" class="pagesize">
     <h3>תשלום</h3>
     <emailinput :email="GetEmailForRecipt" v-model="email" v-bind:placeholderstr="$t('message.reciptemail')" ref="eins"></emailinput>
-    <!-- <emailinput v-model="email, GetEmailForRecipt" v-bind:placeholderstr="$t('message.reciptemail')" ref="eins"></emailinput>      -->
     <div class="mainimage">
       <div class="footer">
         <a class="button paymentbtn" v-on:click="VerifyEmailAndNavigate('GiftCardPayment')">
@@ -27,6 +26,9 @@
 import emailinput from '@/components/Elements/Inputs/EmailInput'
 export default {
   name: 'pay',
+  mounted() {
+    this.$bus.$emit('headermanipulation', 'ok')
+  },
   data() {
     return {
       itemCode: '',

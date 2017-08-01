@@ -53,6 +53,8 @@
 export default {
   name: 'header',
   mounted() {
+    this.$bus.$on('headermanipulation', function (data) {
+    })
     var data = {
       employeeIdNumber: '2524',
       posPassword: '12'
@@ -127,7 +129,7 @@ export default {
   border: 2px solid white !important;
 }
 
-@media #{$mobileportrait} {  
+@media #{$mobileportrait} {
   .plusbtn {
     border-radius: 25px !important;
     border: 1px solid white !important;

@@ -31,5 +31,17 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 Localization: https://kazupon.github.io/vue-i18n/en/
 
-Axios: https://github.com/mzabriskie/axios
+Ajax framework: Axios: https://github.com/mzabriskie/axios
+
+CSS Framework: Bulma (buefy): https://buefy.github.io/#/documentation/start , https://github.com/rafaelpimpa/buefy
+
+State Management : Vuex, https://github.com/vuejs/vuex
+
+Input Validation: VeeValidate, http://vee-validate.logaretm.com/ 
+
+Eventbus, (communication between components) https://www.npmjs.com/package/vue-event-bus
+
+Vue float label (take the placeholder text from the input and move it above the input), https://www.npmjs.com/package/vue-float-label
+
+Loading full screen, https://www.npmjs.com/package/vue-full-loading
 
