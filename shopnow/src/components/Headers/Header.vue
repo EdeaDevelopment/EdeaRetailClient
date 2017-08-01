@@ -24,7 +24,7 @@
     </div>
     <div class="nav-right">
       <a class="nav-item">
-        <a class="button is-large plusbtn">+</a>
+        <a class="button is-large plusbtn" @click="AddItems()">+</a>
       </a>
     </div>
   </nav>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
 export default {
   name: 'header',
   mounted() {
@@ -80,7 +81,16 @@ export default {
     }
   },
   methods: {
-    cartTrigger(event) { }
+    cartTrigger(event) { },
+    AddItems() {
+      var headerHeight = document.getElementById('headercart').offsetHeight
+      var url = window.location.href
+      url += '?Scan=' + headerHeight
+      window.location.href = url
+      if (SMPOS !== undefined) {
+        SMPOS.Scan(headerHeight)
+      }
+    }
   }
 }
 </script>
