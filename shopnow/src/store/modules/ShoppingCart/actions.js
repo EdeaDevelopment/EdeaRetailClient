@@ -89,6 +89,7 @@ export default {
     },
 
     UpdateTransactionShippingEmail({ commit, state, rootState }, shippingEmail) {
+        state.EmailForRecipt = shippingEmail
         var transactionItemsAlreadyExists = state.Transaction
         if (transactionItemsAlreadyExists) {
             state.Transaction.ShippingEmail = shippingEmail

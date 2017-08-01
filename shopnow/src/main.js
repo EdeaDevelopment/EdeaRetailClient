@@ -38,6 +38,8 @@ Vue.use(VeeValidate, {
 // globally (in your main .js file)
 Vue.component('icon', Icon)
 
+Vue.config.devtools = true
+
 Vue.mixin({
   methods: {
     log(msg) {

@@ -1,7 +1,8 @@
 <<template>
   <div id="Pay" class="pagesize">
     <h3>תשלום</h3>
-    <emailinput v-model="shippingEmail" ref="eins"></emailinput>     
+    <emailinput :email="GetEmailForRecipt" v-model="email" v-bind:placeholderstr="$t('message.reciptemail')" ref="eins"></emailinput>
+    <!-- <emailinput v-model="email, GetEmailForRecipt" v-bind:placeholderstr="$t('message.reciptemail')" ref="eins"></emailinput>      -->
     <div class="mainimage">
       <div class="footer">
         <a class="button paymentbtn" v-on:click="VerifyEmailAndNavigate('GiftCardPayment')">
@@ -22,13 +23,14 @@
 </template>
 
 <script>
+//  import { mapGetters } from 'vuex'
 import emailinput from '@/components/Elements/Inputs/EmailInput'
 export default {
   name: 'pay',
   data() {
     return {
       itemCode: '',
-      shippingEmail: ''
+      email: ''
     }
   },
   components: {
@@ -38,11 +40,27 @@ export default {
     async VerifyEmailAndNavigate(paymentPage) {
       var result = await this.$refs.eins.validate()
       if (result) {
-        this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.shippingEmail.value)
+        this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', this.email)
         this.$router.push('/Payments/' + paymentPage)
         return
       }
       window.alert('אי מייל שדה חובה, נא למלא את השדה באי מייל תקין')
+    }
+  },
+  computed: {
+    GetEmailForRecipt: {
+      // ...mapGetters('ShoppingCartModule', [
+      //   'GetEmailForRecipt'
+      // ])
+      // getter
+      get: function () {
+        this.email = this.$store.getters['ShoppingCartModule/GetEmailForRecipt']
+        return this.$store.getters['ShoppingCartModule/GetEmailForRecipt']
+      },
+      // setter
+      set: function (newValue) {
+        this.$store.dispatch('ShoppingCartModule/UpdateTransactionShippingEmail', newValue)
+      }
     }
   }
 }

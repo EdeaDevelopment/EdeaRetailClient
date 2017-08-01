@@ -10,7 +10,8 @@ export default {
     TemporaryTransactionNumber: null,
     Transaction: null,
     ErrorMessage: null,
-    PrerequisiteTransactionData: null
+    PrerequisiteTransactionData: null,
+    EmailForRecipt: ''
   },
   actions,
   mutations,
