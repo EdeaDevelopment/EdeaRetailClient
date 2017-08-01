@@ -27,7 +27,7 @@ import emailinput from '@/components/Elements/Inputs/EmailInput'
 export default {
   name: 'pay',
   mounted() {
-    this.$bus.$emit('headermanipulation', 'ok')
+    this.$bus.$emit('headermanipulation', { showplusbutton: 'false', cart: 'show' })
   },
   data() {
     return {

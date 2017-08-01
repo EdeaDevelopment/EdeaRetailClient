@@ -22,7 +22,7 @@
         <span class="spanheader"> {{ $n(leftToPay, 'currency') }}</span>
       </a>
     </div>
-    <div class="nav-right">
+    <div class="nav-right" ref="plsbtn" v-bind:style="{visibility: showplusbutton}">
       <a class="nav-item">
         <a class="button is-large plusbtn" @click="AddItems()">+</a>
       </a>
@@ -54,15 +54,22 @@ export default {
   name: 'header',
   mounted() {
     this.$bus.$on('headermanipulation', function (data) {
-    })
+      if (data.showplusbutton === 'false') {
+        this.showplusbutton = 'hidden'
+      } else {
+        this.showplusbutton = 'visible'
+      }
+    }.bind(this))
     var data = {
       employeeIdNumber: '2524',
-      posPassword: '12'
+      posPassword: '12',
+      self: this
     }
     this.$store.dispatch('userModule/getEmployeeDetails', data)
   },
-  data: function () {
+  data() {
     return {
+      showplusbutton: true
     }
   },
   computed: {

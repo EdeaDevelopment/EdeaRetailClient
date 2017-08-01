@@ -29,105 +29,110 @@
 </template>
 
 <script>
-  import ListView from '@/components/Collections/ListView'
-  import {
-    mapGetters,
-    mapActions
-  } from 'vuex'
-  export default {
-    name: 'shoppingcart',
-    data() {
-      return {
-        itemCode: ''
-      }
-    },
-    components: {
-      'listview': ListView
-    },
-    computed: {
-      ...mapGetters('ShoppingCartModule', [
-        'TemporaryTransactionNumber',
-        'LeftToPay',
-        'PrerequisiteTransactionData',
-        'TransactionItems'
-      ])
-      // TemporaryTransactionNumber() {
-      //   return this.$store.getters['ShoppingCartModule/TemporaryTransactionNumber']
-      // },
-      // LeftToPay() {
-      //   return this.$store.getters['ShoppingCartModule/LeftToPay']
-      // },
-      // PrerequisiteTransactionData() {
-      //   return this.$store.getters['ShoppingCartModule/CurrentPrerequisiteTransactionData']
-      // },
-      // transaction() {
-      //   var temptransaction = this.$store.getters['ShoppingCartModule/TransactionItems']
-      //   return temptransaction
-      // }
-    },
-    methods: {
-      ...mapActions('ShoppingCartModule', [
-        'OpenTransaction',
-        'TransactionAddItem',
-        'TransactionRemoveItem',
-        'removeItem'
-      ]),
-      // async TransactionAddItem(itemCode) {
-      // var itemCode = this.$refs.ItemCode.value
-      // this.show = true
-      //  await this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
-      //  this.show = false
-      // },
-      // TransactionRemoveItem() {
-      //   var itemIndex = 0
-      //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)
-      // },
-      removeItem(index) {
-        this.log('remove item from mixin')
-        this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
-      }
+import ListView from '@/components/Collections/ListView'
+import {
+  mapGetters,
+  mapActions
+} from 'vuex'
+export default {
+  name: 'shoppingcart',
+  data() {
+    return {
+      itemCode: ''
+    }
+  },
+  mounted() {
+    this.$bus.$emit('headermanipulation', { showplusbutton: 'true', cart: 'show' })
+  },
+  components: {
+    'listview': ListView
+  },
+  computed: {
+    ...mapGetters('ShoppingCartModule', [
+      'TemporaryTransactionNumber',
+      'LeftToPay',
+      'PrerequisiteTransactionData',
+      'TransactionItems'
+    ])
+    // TemporaryTransactionNumber() {
+    //   return this.$store.getters['ShoppingCartModule/TemporaryTransactionNumber']
+    // },
+    // LeftToPay() {
+    //   return this.$store.getters['ShoppingCartModule/LeftToPay']
+    // },
+    // PrerequisiteTransactionData() {
+    //   return this.$store.getters['ShoppingCartModule/CurrentPrerequisiteTransactionData']
+    // },
+    // transaction() {
+    //   var temptransaction = this.$store.getters['ShoppingCartModule/TransactionItems']
+    //   return temptransaction
+    // }
+  },
+  methods: {
+    ...mapActions('ShoppingCartModule', [
+      'OpenTransaction',
+      'TransactionAddItem',
+      'TransactionRemoveItem',
+      'removeItem'
+    ]),
+    // async TransactionAddItem(itemCode) {
+    // var itemCode = this.$refs.ItemCode.value
+    // this.show = true
+    //  await this.$store.dispatch('ShoppingCartModule/TransactionAddItem', itemCode)
+    //  this.show = false
+    // },
+    // TransactionRemoveItem() {
+    //   var itemIndex = 0
+    //   this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', itemIndex)
+    // },
+    removeItem(index) {
+      this.log('remove item from mixin')
+      this.$store.dispatch('ShoppingCartModule/TransactionRemoveItem', index)
     }
   }
+}
 </script>
 <style scoped lang='scss'>
-  @import '../common/sass/base.scss';
-  @import '../common/sass/localization/rtl.scss';
-  .removemarginbottom {
-    margin-bottom: 0px;
-  }
-  .footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 5px;
-    background-color: #efefef;
-    text-align: center;
-  }
-  .footer-button {
-    //margin-top: 8px;
-    width: 150px;
-    box-shadow: 2px 2px 2px #888888;
-  } // #registration 
-  //     box-shadow: 1px 1px 2px 1px #ccc;
-  //     margin: 20px;
-  //     padding: 20px;
-  //     display: inline-block;
-  //     width: 300px;
-  //     vertical-align: top;
-  // .row h4 
-  //     display: inline-block;
-  //     width: 70%;
-  //     text-align: $textalign;
-  //     margin: 0 0 10px 0;
-  //     background-color: $edea-main-color
-  // button 
-  //     background-color: lightgreen;
-  //     border: none;
-  //     box-shadow: 1px 1px 1px black;
-  //     font-size: inherit;
-  //     text-align: $textalign;
-  //     cursor: pointer;
-  // button:hover 
-  //     background-color: green;
+@import '../common/sass/base.scss';
+@import '../common/sass/localization/rtl.scss';
+.removemarginbottom {
+  margin-bottom: 0px;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.footer-button {
+  //margin-top: 8px;
+  width: 150px;
+  box-shadow: 2px 2px 2px #888888;
+} // #registration 
+//     box-shadow: 1px 1px 2px 1px #ccc;
+//     margin: 20px;
+//     padding: 20px;
+//     display: inline-block;
+//     width: 300px;
+//     vertical-align: top;
+// .row h4 
+//     display: inline-block;
+//     width: 70%;
+//     text-align: $textalign;
+//     margin: 0 0 10px 0;
+//     background-color: $edea-main-color
+// button 
+//     background-color: lightgreen;
+//     border: none;
+//     box-shadow: 1px 1px 1px black;
+//     font-size: inherit;
+//     text-align: $textalign;
+//     cursor: pointer;
+// button:hover 
+//     background-color: green;
 </style>
