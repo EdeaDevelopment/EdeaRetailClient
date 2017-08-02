@@ -96,9 +96,9 @@ const app = new Vue({
       store.dispatch('ShoppingCartModule/TransactionAddItems', itemsCode)
       return true
     },
-    SetBranches: function (branchesJson) {
-      var branches = JSON.parse(branchesJson)
-      store.dispatch('BranchesModule/SetPermittedBranches', branches)
+    SetBranches: function (branches) {
+      var permittedBranches = JSON.parse(branches)
+      store.dispatch('BranchesModule/SetPermittedBranches', permittedBranches)
       return true
     }
   }

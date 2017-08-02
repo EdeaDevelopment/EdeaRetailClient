@@ -8,6 +8,9 @@ export default {
     },
     DidSelectBranch(state, branch) {
         state.SelectedBranch = branch
+    },
+    SetPermittedBranches(state, branches) {
+        state.PermittedBranches = branches
     }
 
 }

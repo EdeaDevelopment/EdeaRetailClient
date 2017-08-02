@@ -9,8 +9,12 @@ export default {
         var getPermittedBranchesResponse = await new BranchesService().GetPermittedBranches(managementServerUrl, new GetPermittedBranchesRequest())
         commit('GetPermittedBranchesData', getPermittedBranchesResponse)
     },
-    async DidSelectBranch({ commit, state, rootState }, branch) {
+    DidSelectBranch({ commit, state, rootState }, branch) {
         commit('DidSelectBranch', branch)
+    },
+    SetPermittedBranches({ commit, state, rootState }, branches) {
+        commit('SetPermittedBranches', branches)
     }
+
 }
 
