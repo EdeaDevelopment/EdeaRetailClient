@@ -4,7 +4,7 @@
     <input type="text" v-model="itemCode" value="a">
     <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
     <listview :transactionItems="TransactionItems"></listview>
-    <div class="footer">
+    <div class="footer1">
       <div class="columns is-mobile removemarginbottom">
         <div class="column is-half-mobile is-half-desktop">
           <router-link to="/Coupons">
@@ -99,19 +99,18 @@ export default {
   margin-bottom: 0px;
 }
 
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 5px;
-  background-color: #efefef;
-  text-align: center;
+.footer1 {
+   position:fixed;
+   bottom:0;
+   width:100%;
+   height:100px;   /* Height of the footer */
+  //  background:#6cf;
+   clear: both;
 }
 
 .footer-button {
   //margin-top: 8px;
-  width: 150px;
+  width: 130px;
   box-shadow: 2px 2px 2px #888888;
 } // #registration 
 //     box-shadow: 1px 1px 2px 1px #ccc;

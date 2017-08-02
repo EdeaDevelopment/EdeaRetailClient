@@ -8,6 +8,7 @@ import getters from './getters'
 import userModule from './modules/user/store'
 import ShoppingCartModule from './modules/ShoppingCart/store'
 import ItemsModule from './modules/Items/store'
+import BranchesModule from './modules/Branches/store'
 import RetailChainModel from '../models/RetailChainModel'
 
 Vue.use(Vuex)
@@ -30,6 +31,7 @@ export const store = new Vuex.Store({
     modules: {
       userModule: userModule,
       ShoppingCartModule: ShoppingCartModule,
-      ItemsModule: ItemsModule
+      ItemsModule: ItemsModule,
+      BranchesModule: BranchesModule
     }
 })

@@ -42,7 +42,7 @@
                   <h3 class="subtitle subtitlestyle">
                   <span class="productdesfirstline">כמות :{{item.ItemQuantity}},</span>
                   <span v-if="item.DiscountPercent >= 0">{{item.DiscountPercent}}% הנחה, </span>
-                  <span>סה"כ נטו לשורה: {{item.TotalPrice}}</span>
+                  <span>סה"כ נטו לשורה:{{item.TotalPrice}}</span>
                   <span class="salesnewline" v-if="item.FirstSaleDescription === ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
               </h3>
                 </div>
@@ -167,6 +167,7 @@
   .imagesize {
     height: 64px !important;
     width: 64px !important;
+    margin-right: -3px;
   }
   .list {
     list-style: none;
