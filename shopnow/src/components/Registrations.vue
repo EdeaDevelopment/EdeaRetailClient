@@ -13,6 +13,7 @@
 
 <script>
 /* eslint-disable no-undef */
+import SMPOSService from '../Services/SMPOS/SMPOSService'
 export default {
   computed: {
     users () {
@@ -30,11 +31,7 @@ export default {
   /* eslint-disable no-undef */
   methods: {
     registerUser (user) {
-      var url = window.location.href
-      url += '?SetBranchName=' + 'XXXXXXXX'
-      window.location.href = url
-      SMPOS.SetBranchName('XXXXXXXX')
-      // this.$store.dispatch('userModule/register', user.id)
+      new SMPOSService().SetBranch('xxxxxx')
     }
   }
 }
