@@ -39,7 +39,7 @@ State Management : Vuex, https://github.com/vuejs/vuex
 
 Input Validation: VeeValidate, http://vee-validate.logaretm.com/ 
 
-Eventbus, (communication between components) https://www.npmjs.com/package/vue-event-bus
+Eventbus, (communication between components via events) https://www.npmjs.com/package/vue-event-bus
 
 Vue float label (take the placeholder text from the input and move it above the input), https://www.npmjs.com/package/vue-float-label
 
