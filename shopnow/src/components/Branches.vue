@@ -1,6 +1,6 @@
 <<template>
     <div id="brancheslistview">
-         <h2>{{SelectedBranch.Branch.BranchDescription}}</h2> 
+          <!-- <h2>{{SelectedBranch}}</h2>   -->
         <section id="js-grid-list" class="grid-list" v-cloak>
             <div class="tool-bar">
                 <!-- These link buttons use Vue.js to bind click events to change the "layout" variable and bind an active class -->
