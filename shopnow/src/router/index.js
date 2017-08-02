@@ -8,45 +8,51 @@ import ShoppingCart from '@/components/ShoppingCart'
 import Coupons from '@/components/Coupons'
 import Points from '@/components/Points'
 import Pay from '@/components/Pay'
+import Branches from '@/components/Branches'
 import GiftCardPayment from '@/components/Payments/GiftCardPayment'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
-      path: '/Hello',
-      name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/ShoppingCart',
-      name: 'ShoppingCart',
-      component: ShoppingCart
-    },
-    {
-      path: '/Pay',
-      name: 'Pay',
-      component: Pay
-    },
-    {
-      path: '/Payments/GiftCardPayment',
-      name: 'GiftCardPayment',
-      component: GiftCardPayment
-    },
-    {
-      path: '/Coupons',
-      name: 'Coupons',
-      component: Coupons
-    },
-    {
-      path: '/Points',
-      name: 'Points',
-      component: Points
-    },
-    {
-      path: '/',
-      name: 'Registrations',
-      component: Registrations
-    }
+    path: '/Hello',
+    name: 'Hello',
+    component: Hello
+  },
+  {
+    path: '/ShoppingCart',
+    name: 'ShoppingCart',
+    component: ShoppingCart
+  },
+  {
+    path: '/Pay',
+    name: 'Pay',
+    component: Pay
+  },
+  {
+    path: '/Payments/GiftCardPayment',
+    name: 'GiftCardPayment',
+    component: GiftCardPayment
+  },
+  {
+    path: '/Coupons',
+    name: 'Coupons',
+    component: Coupons
+  },
+  {
+    path: '/Points',
+    name: 'Points',
+    component: Points
+  },
+  {
+    path: '/Registrations',
+    name: 'Registrations',
+    component: Registrations
+  },
+  {
+    path: '/',
+    name: 'Branches',
+    component: Branches
+  }
   ]
 })
