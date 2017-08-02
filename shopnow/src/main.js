@@ -15,6 +15,7 @@ import 'vue-awesome/icons/shopping-cart'
 import 'vue-awesome/icons/envelope'
 import 'vue-awesome/icons/credit-card'
 import 'vue-awesome/icons/gift'
+import 'vue-awesome/icons/bluetooth'
 import Icon from 'vue-awesome/components/Icon'
 import VueHead from 'vue-head'
 import Buefy from 'buefy'
@@ -93,6 +94,11 @@ const app = new Vue({
     TransactionAddItems: function (items) {
       var itemsCode = JSON.parse(items)
       store.dispatch('ShoppingCartModule/TransactionAddItems', itemsCode)
+      return true
+    },
+    SetBranches: function (branchesJson) {
+      var branches = JSON.parse(branchesJson)
+      store.dispatch('BranchesModule/SetPermittedBranches', branches)
       return true
     }
   }
