@@ -89,7 +89,6 @@
 <style scoped lang='scss'>
   @import '../../common/sass/responsive/mediaqueries.scss';
   @import '../../common/sass/localization/directional.scss';
-  @import  '../../../node_modules/vue-animate/dist/vue-animate.min.css';
   /* Starting ListView CSS */
   /* Hide un-compiled mustache bindings until the Vue instance is ready */
   [v-cloak] {
