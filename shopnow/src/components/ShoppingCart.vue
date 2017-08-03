@@ -21,7 +21,7 @@
           </router-link>
         </div>
       </div>
-      <router-link to="/Pay">
+      <router-link to="/Pay" class="animated fadeInLeft">
         <a class="button is-info footer-button">{{ $t('message.continuetopay') }}</a>
       </router-link>
     </div>

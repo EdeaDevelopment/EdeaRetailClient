@@ -1,6 +1,6 @@
 <<template>
   <div id="listviewid">
-    <section id="js-grid-list" class="grid-list" v-cloak>
+    <section id="js-grid-list" class="grid-list" v-cloak v-show="transactionItems.length > 0">
       <div class="tool-bar">
         <!-- These link buttons use Vue.js to bind click events to change the "layout" variable and bind an active class -->
         <!-- <a class="list-icon" v-on:click="layout = 'list'" v-bind:class="{ 'active': layout == 'list'}" title="List"></a>
@@ -13,7 +13,7 @@
           <a v-bind:href="blog.url" v-bind:style="{ backgroundImage: 'url(' + blog.image.large + ')' }" target="_blank"></a>
         </li>
       </ul>
-      <ul v-if="layout === 'list'" class="list">
+      <ul v-if="layout === 'list'" class="list" >
         <li refs="pliitem" v-for="(item, index) in transactionItems" class="pli">
           <div class="columns is-mobile pli">
             <div class="column is-2 fixpadding">
@@ -243,6 +243,10 @@
       /* padding-left: 5px; */
       margin-bottom: 2px;
       padding-right: 1px;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
     }
   } // @media (max-width: 1024px) {
   //   .list {
