@@ -68,10 +68,10 @@
     },
     mounted() {
       //  Calculate the height of the list view
-      var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer').clientHeight
+      var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer1').clientHeight
       var headerHeight = document.getElementById('headercart').clientHeight
       var screenHeight = window.innerHeight
-      var buffer = 50
+      var buffer = 80
       var maxHeight = screenHeight - footerHeight - headerHeight - buffer
       document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
     },
@@ -89,6 +89,7 @@
 <style scoped lang='scss'>
   @import '../../common/sass/responsive/mediaqueries.scss';
   @import '../../common/sass/localization/directional.scss';
+  @import  '../../../node_modules/vue-animate/dist/vue-animate.min.css';
   /* Starting ListView CSS */
   /* Hide un-compiled mustache bindings until the Vue instance is ready */
   [v-cloak] {

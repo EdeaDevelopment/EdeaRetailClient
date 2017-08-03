@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    this.$bus.$emit('headermanipulation', { showplusbutton: 'true', cart: 'show' })
+    this.$bus.$emit('headermanipulation', { showplusbutton: true, cart: 'show' })
   },
   components: {
     'listview': ListView
@@ -108,30 +108,8 @@ export default {
    clear: both;
 }
 
-.footer-button {
-  //margin-top: 8px;
+.footer-button {  
   width: 130px;
   box-shadow: 2px 2px 2px #888888;
-} // #registration 
-//     box-shadow: 1px 1px 2px 1px #ccc;
-//     margin: 20px;
-//     padding: 20px;
-//     display: inline-block;
-//     width: 300px;
-//     vertical-align: top;
-// .row h4 
-//     display: inline-block;
-//     width: 70%;
-//     text-align: $textalign;
-//     margin: 0 0 10px 0;
-//     background-color: $edea-main-color
-// button 
-//     background-color: lightgreen;
-//     border: none;
-//     box-shadow: 1px 1px 1px black;
-//     font-size: inherit;
-//     text-align: $textalign;
-//     cursor: pointer;
-// button:hover 
-//     background-color: green;
+} 
 </style>
