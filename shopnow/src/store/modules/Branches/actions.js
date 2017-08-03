@@ -11,7 +11,6 @@ export default {
         commit('GetPermittedBranchesData', getPermittedBranchesResponse)
     },
     DidSelectBranch({ commit, state, rootState }, branch) {
-        debugger
         new SMPOSService().SetBranch(branch.Branch.BranchDescription)
         commit('DidSelectBranch', branch)
     },
