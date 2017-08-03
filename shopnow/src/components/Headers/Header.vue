@@ -24,7 +24,7 @@
     </div>
     <div class="nav-right" ref="plsbtn" v-bind:style="{visibility: showplusbutton}">
       <a class="nav-item">
-        <a class="button is-large plusbtn" @click="AddItems()">+</a>
+        <a class="button is-large plusbtn" @click="OpenCatalog()">+</a>
       </a>
     </div>
   </nav>
@@ -50,6 +50,7 @@
 
 <script>
 /* eslint-disable no-undef */
+import SMPOSService from '../../Services/SMPOS/SMPOSService'
 export default {
   name: 'header',
   mounted() {
@@ -91,14 +92,9 @@ export default {
   },
   methods: {
     cartTrigger(event) { },
-    AddItems() {
+    OpenCatalog() {
       var headerHeight = document.getElementById('headercart').offsetHeight
-      var url = window.location.href
-      url += '?Scan=' + headerHeight
-      window.location.href = url
-      if (SMPOS !== undefined) {
-        SMPOS.Scan(headerHeight)
-      }
+      new SMPOSService().OpenCatalog(headerHeight)
     }
   }
 }
