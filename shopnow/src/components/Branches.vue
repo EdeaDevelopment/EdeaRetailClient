@@ -46,8 +46,12 @@
             }
         },
         mounted() {
-            // debugger
-            // this.$store.dispatch('BranchesModule/GetPermittedBranches')
+            this.$bus.$emit('headermanipulation', { title: this.$t('message.selectBranch'), showplusbutton: false, showLeftToPay: false, showCartbutton: false, cart: 'show' })
+            this.$store.dispatch('ShoppingCartModule/OpenTransaction')
+        },
+        destroyed() {
+            this.$bus.$emit('headermanipulation', { title: 'לקוח כללי', showLeftToPay: true, true: false, cart: 'show' })
+            this.$bus.$emit('openCatalog')
         },
         methods: {
             DidSelectBranch(branch) {

@@ -1,8 +1,8 @@
 <<template>
   <div id="ShoppingCart">
-    <h3>Shopping Cart</h3>
+    <!-- <h3>Shopping Cart</h3>
     <input type="text" v-model="itemCode" value="a">
-    <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
+    <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button> -->
     <listview :transactionItems="TransactionItems"></listview>
     <div class="footer1">
       <div class="columns is-mobile removemarginbottom">
@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    this.$bus.$emit('headermanipulation', { showplusbutton: true, cart: 'show' })
+    this.$bus.$emit('headermanipulation', { title: 'לקוח כללי', showplusbutton: true, cart: 'show' })
   },
   components: {
     'listview': ListView

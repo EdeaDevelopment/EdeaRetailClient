@@ -1,6 +1,6 @@
 <<template>
   <div id="Pay" class="pagesize">
-    <h3>תשלום</h3>
+    <!-- <h3>תשלום</h3> -->
     <emailinput :email="GetEmailForRecipt" v-model="email" v-bind:placeholderstr="$t('message.reciptemail')" ref="eins"></emailinput>
     <div class="mainimage">
       <div class="footer">
@@ -80,7 +80,7 @@ export default {
 .mainimage {
   height: 45%;
   background-repeat: no-repeat;
-  background-image: url("http://images.globes.co.il/images/NewGlobes/big_image_800/2015/e08_SCOTTCHAN575.jpg");
+  background-image: url("https://mobileapi.edea.co.il/mobileresources/smpos/pay.jpg");
   background-position: center center;
   background-size: cover;
 }

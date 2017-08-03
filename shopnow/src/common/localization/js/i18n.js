@@ -23,7 +23,8 @@ const messages = {
       cardnumber: 'Card number',
       serialnumber: 'Serial number',
       cancel: 'Cancel',
-      approvepayment: 'Approve Payment'
+      approvepayment: 'Approve Payment',
+      selectBranch: 'Select Branch'
     }
   },
   he: {
@@ -42,7 +43,8 @@ const messages = {
       cardnumber: 'מספר כרטיס',
       serialnumber: 'מספר סידורי',
       cancel: 'ביטול',
-      approvepayment: 'אישור תשלום'
+      approvepayment: 'אישור תשלום',
+      selectBranch: 'בחר סניף'
     }
   }
 }

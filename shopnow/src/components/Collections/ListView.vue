@@ -40,9 +40,9 @@
               <div class="columns fittext">
                 <div class="column is-12-mobile fulllinedescription">
                   <h3 class="subtitle subtitlestyle">
-                  <span class="productdesfirstline">כמות :{{item.ItemQuantity}},</span>
+                  <span class="productdesfirstline">כמות: {{item.ItemQuantity}},</span>
                   <span v-if="item.DiscountPercent >= 0">{{item.DiscountPercent}}% הנחה, </span>
-                  <span>סה"כ נטו לשורה:{{item.TotalPrice}}</span>
+                  <span>סה"כ נטו לשורה: {{item.TotalPrice}} ש"ח</span>
                   <span class="salesnewline" v-if="item.FirstSaleDescription === ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
               </h3>
                 </div>
@@ -71,7 +71,8 @@
       var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer1').clientHeight
       var headerHeight = document.getElementById('headercart').clientHeight
       var screenHeight = window.innerHeight
-      var buffer = 80
+      var buffer = 20
+      // var buffer = 80
       var maxHeight = screenHeight - footerHeight - headerHeight - buffer
       document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
     },

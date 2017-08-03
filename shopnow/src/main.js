@@ -94,6 +94,8 @@ const app = new Vue({
       return true
     },
     TransactionAddItems: function (items) {
+      // this.$bus.$emit('headermanipulation', { title: '', showplusbutton: true, cart: 'show' })
+
       var itemsCode = JSON.parse(items)
       store.dispatch('ShoppingCartModule/TransactionAddItems', itemsCode)
       return true

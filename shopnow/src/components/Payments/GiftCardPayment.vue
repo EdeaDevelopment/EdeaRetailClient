@@ -1,6 +1,6 @@
 <<template>
     <div id="giftCardPayment" class="pagesize">
-        <h3>תשלום ברכטיס מתנה</h3>
+        <!-- <h3>תשלום ברכטיס מתנה</h3> -->
         <div class="field inputfield">
             <p class="control" v-bind:class="{ 'has-icon': !giftcardnumberkeyup, 'has-icon-right': !giftcardnumberkeyup }">
                 <float-label>
@@ -99,7 +99,7 @@
     .mainimage {
         height: 45%;
         background-repeat: no-repeat;
-        background-image: url("http://www.vulevufamily.com/en/wp-content/uploads/2016/01/gift-card.jpg");
+        background-image: url("https://mobileapi.edea.co.il/mobileresources/smpos/gift-card.jpg");
         background-position: center center;
         background-size: cover;
     }

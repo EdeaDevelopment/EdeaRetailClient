@@ -35,7 +35,7 @@ export default {
     },
     async TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
         rootState.loading = true
-        if (!state.Transaction) {
+        if (!state.TemporaryTransactionNumber) {
             await dispatch('OpenTransaction')
         }
 
