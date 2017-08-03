@@ -26,6 +26,8 @@ import VeeValidate, {
   Validator
 } from 'vee-validate'
 import he from 'vee-validate/dist/locale/he'
+//  import lodash from 'lodash'
+//  import animation from 'vue-animate/dist/vue-animate.min.css'
 
 Vue.config.productionTip = false
 Vue.use(VueHead)
@@ -105,3 +107,4 @@ const app = new Vue({
 })
 
 window.vue = app
+//  window._ = require('lodash')

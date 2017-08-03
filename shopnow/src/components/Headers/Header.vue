@@ -55,7 +55,7 @@ export default {
   name: 'header',
   mounted() {
     this.$bus.$on('headermanipulation', function (data) {
-      if (data.showplusbutton === 'false') {
+      if (data.showplusbutton === false) {
         this.showplusbutton = 'hidden'
       } else {
         this.showplusbutton = 'visible'
@@ -70,7 +70,7 @@ export default {
   },
   data() {
     return {
-      showplusbutton: true
+      showplusbutton: false
     }
   },
   computed: {
