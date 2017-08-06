@@ -13,7 +13,18 @@ const messages = {
       subTotal: 'SubTotal',
       currency: 'USD',
       coupons: 'coupons',
-      loading: 'loading...'
+      loading: 'loading...',
+      implementpoint: 'Implement Points',
+      continuetopay: 'Checkout',
+      removeitemquestion: 'האם אתה בטוח שאתה רוצה להסיר את הפריט',
+      reciptemail: 'Email for recipt',
+      payingiftcard: 'Pay with Gift Card',
+      payincreditcard: 'Pay with Credit Card',
+      cardnumber: 'Card number',
+      serialnumber: 'Serial number',
+      cancel: 'Cancel',
+      approvepayment: 'Approve Payment',
+      selectBranch: 'Select Branch'
     }
   },
   he: {
@@ -32,7 +43,8 @@ const messages = {
       cardnumber: 'מספר כרטיס',
       serialnumber: 'מספר סידורי',
       cancel: 'ביטול',
-      approvepayment: 'אישור תשלום'
+      approvepayment: 'אישור תשלום',
+      selectBranch: 'בחר סניף'
     }
   }
 }

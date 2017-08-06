@@ -2,7 +2,7 @@
 <<template>
   <div id='headercart'>
     <nav class="nav customheader">
-    <div class="nav-left">
+    <div class="nav-left" v-bind:style="{visibility: showCartbutton}">
       <a class="nav-item">
         <router-link to="/ShoppingCart">
           <div>
@@ -18,8 +18,8 @@
     </div>
     <div class="nav-center">
       <a class="nav-item spancustomername">                
-        <span class="spanheader spancustomername">{{ customerName }}</span>
-        <span class="spanheader"> {{ $n(leftToPay, 'currency') }}</span>
+        <span class="spanheader spancustomername">{{ GetTitle }}</span>
+        <span class="spanheader" v-bind:style="{visibility: showLeftToPay}"> {{ $n(leftToPay, 'currency') }}</span>
       </a>
     </div>
     <div class="nav-right" ref="plsbtn" v-bind:style="{visibility: showplusbutton}">
@@ -55,11 +55,25 @@ export default {
   name: 'header',
   mounted() {
     this.$bus.$on('headermanipulation', function (data) {
-      if (data.showplusbutton === 'false') {
+      if (data.showplusbutton === false) {
         this.showplusbutton = 'hidden'
       } else {
         this.showplusbutton = 'visible'
       }
+      if (data.showLeftToPay === false) {
+        this.showLeftToPay = 'hidden'
+      } else {
+        this.showLeftToPay = 'visible'
+      }
+      if (data.showCartbutton === false) {
+        this.showCartbutton = 'hidden'
+      } else {
+        this.showCartbutton = 'visible'
+      }
+      this.title = data.title
+    }.bind(this))
+    this.$bus.$on('openCatalog', function () {
+      this.OpenCatalog()
     }.bind(this))
     var data = {
       employeeIdNumber: '2524',
@@ -70,16 +84,21 @@ export default {
   },
   data() {
     return {
-      showplusbutton: true
+      title: '',
+      showplusbutton: false,
+      showLeftToPay: false,
+      showCartbutton: false
     }
   },
   computed: {
-    customerName() {
-      var data = this.$store.getters['ShoppingCartModule/TransactionUserDetails']
-      if (data) {
-        return data
+    GetTitle() {
+      if (!this.title) {
+        var userName = this.$store.getters['ShoppingCartModule/TransactionUserDetails']
+        if (userName) {
+          this.title = userName
+        }
       }
-      return 'Aloni Ploni'
+      return this.title
     },
     leftToPay() {
       var temptransaction = this.$store.getters['ShoppingCartModule/LeftToPay']
@@ -93,6 +112,8 @@ export default {
   methods: {
     cartTrigger(event) { },
     OpenCatalog() {
+      // this.showplusbutton = 'hidden'
+
       var headerHeight = document.getElementById('headercart').offsetHeight
       new SMPOSService().OpenCatalog(headerHeight)
     }
@@ -128,7 +149,7 @@ export default {
 }
 
 .plusbtn {
-  border-radius: 25px !important;
+  border-radius: 10px !important;
   border: 2px solid white !important;
 }
 

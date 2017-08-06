@@ -1,6 +1,6 @@
 <<template>
   <div id="listviewid">
-    <section id="js-grid-list" class="grid-list" v-cloak>
+    <section id="js-grid-list" class="grid-list" v-cloak v-show="transactionItems.length > 0">
       <div class="tool-bar">
         <!-- These link buttons use Vue.js to bind click events to change the "layout" variable and bind an active class -->
         <!-- <a class="list-icon" v-on:click="layout = 'list'" v-bind:class="{ 'active': layout == 'list'}" title="List"></a>
@@ -13,7 +13,7 @@
           <a v-bind:href="blog.url" v-bind:style="{ backgroundImage: 'url(' + blog.image.large + ')' }" target="_blank"></a>
         </li>
       </ul>
-      <ul v-if="layout === 'list'" class="list">
+      <ul v-if="layout === 'list'" class="list" >
         <li refs="pliitem" v-for="(item, index) in transactionItems" class="pli">
           <div class="columns is-mobile pli">
             <div class="column is-2 fixpadding">
@@ -40,9 +40,9 @@
               <div class="columns fittext">
                 <div class="column is-12-mobile fulllinedescription">
                   <h3 class="subtitle subtitlestyle">
-                  <span class="productdesfirstline">כמות :{{item.ItemQuantity}},</span>
+                  <span class="productdesfirstline">כמות: {{item.ItemQuantity}},</span>
                   <span v-if="item.DiscountPercent >= 0">{{item.DiscountPercent}}% הנחה, </span>
-                  <span>סה"כ נטו לשורה:{{item.TotalPrice}}</span>
+                  <span>סה"כ נטו לשורה: {{item.TotalPrice}} ש"ח</span>
                   <span class="salesnewline" v-if="item.FirstSaleDescription === ' '"> מבצע ראשון למוצר {{item.FirstSaleDescription}}</span>
               </h3>
                 </div>
@@ -68,10 +68,11 @@
     },
     mounted() {
       //  Calculate the height of the list view
-      var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer').clientHeight
+      var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer1').clientHeight
       var headerHeight = document.getElementById('headercart').clientHeight
       var screenHeight = window.innerHeight
-      var buffer = 50
+      var buffer = 20
+      // var buffer = 80
       var maxHeight = screenHeight - footerHeight - headerHeight - buffer
       document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
     },
@@ -243,6 +244,10 @@
       /* padding-left: 5px; */
       margin-bottom: 2px;
       padding-right: 1px;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
     }
   } // @media (max-width: 1024px) {
   //   .list {

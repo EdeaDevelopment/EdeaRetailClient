@@ -1,8 +1,8 @@
 <<template>
   <div id="ShoppingCart">
-    <h3>Shopping Cart</h3>
+    <!-- <h3>Shopping Cart</h3>
     <input type="text" v-model="itemCode" value="a">
-    <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button>
+    <button @click="TransactionAddItem(itemCode)">Transaction Add Item</button> -->
     <listview :transactionItems="TransactionItems"></listview>
     <div class="footer1">
       <div class="columns is-mobile removemarginbottom">
@@ -21,7 +21,7 @@
           </router-link>
         </div>
       </div>
-      <router-link to="/Pay">
+      <router-link to="/Pay" class="animated fadeInLeft">
         <a class="button is-info footer-button">{{ $t('message.continuetopay') }}</a>
       </router-link>
     </div>
@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted() {
-    this.$bus.$emit('headermanipulation', { showplusbutton: 'true', cart: 'show' })
+    this.$bus.$emit('headermanipulation', { title: 'לקוח כללי', showplusbutton: true, cart: 'show' })
   },
   components: {
     'listview': ListView
@@ -108,30 +108,8 @@ export default {
    clear: both;
 }
 
-.footer-button {
-  //margin-top: 8px;
+.footer-button {  
   width: 130px;
   box-shadow: 2px 2px 2px #888888;
-} // #registration 
-//     box-shadow: 1px 1px 2px 1px #ccc;
-//     margin: 20px;
-//     padding: 20px;
-//     display: inline-block;
-//     width: 300px;
-//     vertical-align: top;
-// .row h4 
-//     display: inline-block;
-//     width: 70%;
-//     text-align: $textalign;
-//     margin: 0 0 10px 0;
-//     background-color: $edea-main-color
-// button 
-//     background-color: lightgreen;
-//     border: none;
-//     box-shadow: 1px 1px 1px black;
-//     font-size: inherit;
-//     text-align: $textalign;
-//     cursor: pointer;
-// button:hover 
-//     background-color: green;
+} 
 </style>

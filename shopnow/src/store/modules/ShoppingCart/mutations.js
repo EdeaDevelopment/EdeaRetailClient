@@ -15,8 +15,8 @@ export default {
             updateTransactionResponse.Transaction.TransactionItems.forEach(function (item) {
                 item.url = 'https://voltagead.com/tapping-ugc-offerpop/'
                 item.image = {
-                    large: 'http://www.tshirthost.com/products/3/95179.png',
-                    small: 'http://www.tshirthost.com/products/3/95179.png'
+                    large: 'https://mobileapi.edea.co.il/mobileresources/smpos/item.jpg',
+                    small: 'https://mobileapi.edea.co.il/mobileresources/smpos/item.jpg'
                 }
             }, this)
 
