@@ -9,7 +9,7 @@ import BranchInfo from '../../../models/Branches/BranchInfo'
 export default {
   namespaced: true,
   state: {
-    PermittedBranches: [{BranchCode: 'aaa', Branch: {BranchDescription: 'סניף ירושלים'}}, {Branch: {BranchDescription: 'סניף תל אביב'}, BranchCode: 'bbb'}],
+    PermittedBranches: [],
     SelectedBranch: ''
   },
   actions,

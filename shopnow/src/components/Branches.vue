@@ -46,8 +46,7 @@
             }
         },
         mounted() {
-            // debugger
-            // this.$store.dispatch('BranchesModule/GetPermittedBranches')
+            this.$store.dispatch('BranchesModule/OnMounted')
         },
         methods: {
             DidSelectBranch(branch) {
@@ -57,7 +56,12 @@
         },
         computed: {
             PermittedBranches() {
-                return this.$store.getters['BranchesModule/PermittedBranches']
+                var branches = this.$store.getters['BranchesModule/PermittedBranches']
+                if (branches && branches.length === 1) {
+                    this.$store.dispatch('BranchesModule/DidSelectBranch', branches[0])
+                    this.$router.push('/ShoppingCart')
+                }
+                return branches
             },
             SelectedBranch() {
                 return this.$store.getters['BranchesModule/SelectedBranch']

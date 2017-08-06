@@ -41,5 +41,12 @@ export default class SMPOSService {
         this.VirtualJsAction = function (actionName, actionValue) {
             VirtualJsFile.actionName(actionValue)
         }
+        this.OnMounted = function () {
+            this.UrlAction('OnMounted', '')
+            if (typeof SMPOS !== 'undefined') {
+                SMPOS.OnMounted('')
+            }
+        }
     }
 }
+
