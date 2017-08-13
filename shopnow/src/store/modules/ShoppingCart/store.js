@@ -8,6 +8,8 @@ export default {
   namespaced: true,
   state: {
     TemporaryTransactionNumber: null,
+    PendingTransactionItems: [],
+    TransactionItemChecksum: null,
     Transaction: null,
     ErrorMessage: null,
     PrerequisiteTransactionData: null,

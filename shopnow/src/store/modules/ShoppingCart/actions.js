@@ -34,37 +34,12 @@ export default {
         commit('OpenTransaction', openTransactionResponse)
     },
     async TransactionAddItem({ commit, dispatch, state, rootState }, itemCode) {
-        rootState.loading = true
-        if (!state.TemporaryTransactionNumber) {
-            await dispatch('OpenTransaction')
-        }
-
-        if (itemCode && state.TemporaryTransactionNumber) {
-            var transactionItems = CurrentTransactionItems(state)
-            transactionItems.push(FillTransactionItem(state, itemCode))
-
-            await dispatch('UpdateTransaction', transactionItems)
-        }
-        rootState.loading = false
+        var itemsCode = []
+        itemsCode.push(itemCode)
+        TransactionAddItems(commit, dispatch, state, rootState, itemsCode)
     },
     async TransactionAddItems({ commit, dispatch, state, rootState }, itemsCode) {
-        if (!state.Transaction) {
-            await dispatch('OpenTransaction')
-        }
-
-        if (itemsCode && itemsCode.length > 0 && state.TemporaryTransactionNumber) {
-            rootState.loading = true
-
-            var transactionItems = CurrentTransactionItems(state)
-
-            itemsCode.forEach(function(itemCode) {
-                transactionItems.push(FillTransactionItem(state, itemCode))
-            }, this)
-
-            await dispatch('UpdateTransaction', transactionItems)
-
-            rootState.loading = false
-        }
+        TransactionAddItems(commit, dispatch, state, rootState, itemsCode)
     },
     async TransactionRemoveItem({ commit, dispatch, state, rootState }, itemIndex) {
         if (itemIndex > -1 && state.TemporaryTransactionNumber) {
@@ -116,4 +91,64 @@ export const CurrentTransactionItems = (state) => {
     }
 
     return transactionItems
+}
+
+export const UpdateTransaction = async(state, rootState, transactionItems) => {
+    var updateTransactionRequest = new UpdateTransactionRequest()
+    updateTransactionRequest.UniquePOSIdentifier = state.PrerequisiteTransactionData.UniquePOSIdentifier
+    updateTransactionRequest.TransactionProcessingSettings.RegisterByGeneralPosCustomer = true
+    updateTransactionRequest.temporaryTransactionNumber = state.TemporaryTransactionNumber
+    updateTransactionRequest.Transaction.TemporaryTransactionNumber = state.TemporaryTransactionNumber
+    updateTransactionRequest.Transaction.TransactionItems = transactionItems
+
+    var apiUrl = rootState.RetailChainModel.APIUrlAddress
+    var updateTransactionResponse = await new TransactionService().UpdateTransaction(apiUrl, updateTransactionRequest)
+
+    return updateTransactionResponse
+}
+
+export const AddPendingItems = (state, itemsCode) => {
+    state.TransactionItemsChecksum = window.vue.guid()
+
+    itemsCode.forEach(function(itemCode) {
+        state.PendingTransactionItems.push(itemCode)
+    }, this)
+
+    return state.TransactionItemsChecksum
+}
+
+export const RemovePendingItems = (state, transactionItemsChecksum) => {
+    var isLastAction = transactionItemsChecksum === state.TransactionItemsChecksum
+
+    if (isLastAction) {
+        state.PendingTransactionItems = []
+    }
+
+    return isLastAction
+}
+
+export const TransactionAddItems = async(commit, dispatch, state, rootState, itemsCode) => {
+        if (!state.Transaction) {
+            await dispatch('OpenTransaction')
+        }
+
+        if (itemsCode && itemsCode.length > 0 && state.TemporaryTransactionNumber) {
+            rootState.loading = true
+
+            var transactionItemsChecksum = AddPendingItems(state, itemsCode)
+
+            var transactionItems = CurrentTransactionItems(state)
+
+            state.PendingTransactionItems.forEach(function(itemCode) {
+                transactionItems.push(FillTransactionItem(state, itemCode))
+            }, this)
+
+            var updateTransactionResponse = await UpdateTransaction(state, rootState, transactionItems)
+
+            if (RemovePendingItems(state, transactionItemsChecksum)) {
+               commit('UpdateTransaction', updateTransactionResponse)
+            }
+
+            rootState.loading = false
+        }
 }

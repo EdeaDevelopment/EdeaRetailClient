@@ -26,6 +26,7 @@ import VeeValidate, {
   Validator
 } from 'vee-validate'
 import he from 'vee-validate/dist/locale/he'
+
 //  import lodash from 'lodash'
 //  import animation from 'vue-animate/dist/vue-animate.min.css'
 
@@ -35,7 +36,6 @@ Vue.use(VueI18n)
 Vue.use(Buefy)
 Vue.use(VueFloatLabel)
 Vue.use(VueEventBus)
-
 //  Add locale helper.
 Validator.addLocale(he)
 
@@ -54,6 +54,15 @@ Vue.mixin({
     },
     isRtl() {
       return true
+    },
+    guid() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1)
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4()
     }
   }
 })

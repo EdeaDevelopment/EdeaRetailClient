@@ -71,10 +71,11 @@
       var footerHeight = document.getElementById('ShoppingCart').querySelector('.footer1').clientHeight
       var headerHeight = document.getElementById('headercart').clientHeight
       var screenHeight = window.innerHeight
-      var buffer = 20
+      var buffer = 0
       // var buffer = 80
       var maxHeight = screenHeight - footerHeight - headerHeight - buffer
       document.getElementsByClassName('list')[0].style.maxHeight = maxHeight + 'px'
+      document.getElementsByClassName('list')[0].style.height = maxHeight + 'px'
     },
     methods: {
       removeItem(index) {
